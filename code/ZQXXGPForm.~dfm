@@ -1,0 +1,260 @@
+object ZQXXGPForm1: TZQXXGPForm1
+  Left = 927
+  Top = 224
+  Width = 510
+  Height = 360
+  Caption = #35777#21048#20449#24687#32929#31080'-'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object ZQXXGPZQLXLabel: TLabel
+    Left = 51
+    Top = 31
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #35777#21048#31867#22411
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object ZQXXGPZQDMLabel: TLabel
+    Left = 275
+    Top = 31
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #35777#21048#20195#30721
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object ZQXXGPJYSCLabel: TLabel
+    Left = 51
+    Top = 175
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #20132#26131#24066#22330
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object ZQXXGPZGBLabel: TLabel
+    Left = 291
+    Top = 175
+    Width = 48
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #24635#32929#26412
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object ZQXXGPMGMZLabel: TLabel
+    Left = 51
+    Top = 247
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #27599#32929#38754#20540
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object ZQXXGPZQMCLabel: TLabel
+    Left = 275
+    Top = 103
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #35777#21048#21517#31216
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblFXRQZQXXGP: TLabel
+    Left = 49
+    Top = 103
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #21457#34892#26085#26399
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object ZQXXGPZQLXComboBox: TComboBox
+    Left = 128
+    Top = 29
+    Width = 100
+    Height = 21
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 0
+    Text = #32929#31080
+    OnChange = ZQXXGPZQLXComboBoxChange
+    Items.Strings = (
+      #32929#31080
+      #20538#21048
+      #22238#36141)
+  end
+  object ZQXXGPZQDMEdit: TEdit
+    Left = 352
+    Top = 26
+    Width = 81
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 1
+  end
+  object ZQXXGPJYSCEdit: TEdit
+    Left = 128
+    Top = 170
+    Width = 81
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 2
+  end
+  object ZQXXGPZGBEdit: TEdit
+    Left = 352
+    Top = 170
+    Width = 81
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 3
+  end
+  object ZQXXGPMGMZEdit: TEdit
+    Left = 128
+    Top = 242
+    Width = 81
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 4
+  end
+  object ZQXXGPSureButton: TButton
+    Left = 282
+    Top = 245
+    Width = 73
+    Height = 25
+    Caption = #30830#23450
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    OnClick = ZQXXGPSureButtonClick
+  end
+  object ZQXXGPCancleButton: TButton
+    Left = 354
+    Top = 245
+    Width = 73
+    Height = 25
+    Caption = #21462#28040
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 6
+    OnClick = ZQXXGPCancleButtonClick
+  end
+  object ZQXXGPZQMCEdit: TEdit
+    Left = 352
+    Top = 98
+    Width = 81
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 7
+  end
+  object dtpZQXXGPFXRQ: TDateTimePicker
+    Left = 129
+    Top = 97
+    Width = 84
+    Height = 25
+    CalAlignment = dtaLeft
+    Date = 43186.4417155324
+    Time = 43186.4417155324
+    DateFormat = dfShort
+    DateMode = dmComboBox
+    Kind = dtkDate
+    ParseInput = False
+    TabOrder = 8
+  end
+  object ZQXXGPADOQuerry: TADOQuery
+    Connection = MainForm.conMainForm
+    Parameters = <>
+    Left = 256
+    Top = 244
+  end
+end

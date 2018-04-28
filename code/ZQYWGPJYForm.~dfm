@@ -1,0 +1,465 @@
+object ZQYWGPJYForm1: TZQYWGPJYForm1
+  Left = 581
+  Top = 192
+  Width = 492
+  Height = 564
+  Caption = #32929#31080#20132#26131'-'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblGPJYZQDM: TLabel
+    Left = 39
+    Top = 23
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #35777#21048#20195#30721
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYJYRQ: TLabel
+    Left = 255
+    Top = 28
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #20132#26131#26085#26399
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYJYFX: TLabel
+    Left = 255
+    Top = 83
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #20132#26131#26041#21521
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYZQMC: TLabel
+    Left = 39
+    Top = 78
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #35777#21048#21517#31216
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYCJSL: TLabel
+    Left = 255
+    Top = 139
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #25104#20132#25968#37327
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYYHS: TLabel
+    Left = 55
+    Top = 268
+    Width = 48
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #21360#33457#31246
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYJSF: TLabel
+    Left = 271
+    Top = 266
+    Width = 48
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #32463#25163#36153
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYSXF: TLabel
+    Left = 55
+    Top = 396
+    Width = 48
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #25163#32493#36153
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYZGF: TLabel
+    Left = 271
+    Top = 333
+    Width = 48
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #35777#31649#36153
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYGHF: TLabel
+    Left = 55
+    Top = 335
+    Width = 48
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #36807#25143#36153
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYYJ: TLabel
+    Left = 287
+    Top = 396
+    Width = 32
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #20323#37329
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYJYSC: TLabel
+    Left = 39
+    Top = 139
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #20132#26131#24066#22330
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYCJJG: TLabel
+    Left = 39
+    Top = 204
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #25104#20132#20215#26684
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblGPJYCJJE: TLabel
+    Left = 255
+    Top = 202
+    Width = 64
+    Height = 16
+    Alignment = taRightJustify
+    Caption = #25104#20132#37329#39069
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+  end
+  object edtGPJYZQDM: TEdit
+    Left = 119
+    Top = 22
+    Width = 81
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 0
+  end
+  object dtpGPJYJYRQ: TDateTimePicker
+    Left = 340
+    Top = 23
+    Width = 90
+    Height = 25
+    CalAlignment = dtaLeft
+    Date = 43186.4417155324
+    Time = 43186.4417155324
+    DateFormat = dfShort
+    DateMode = dmComboBox
+    Kind = dtkDate
+    ParseInput = False
+    TabOrder = 1
+  end
+  object edtGPJYZQMC: TEdit
+    Left = 119
+    Top = 79
+    Width = 81
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 2
+  end
+  object btnGPJYSure: TButton
+    Left = 282
+    Top = 454
+    Width = 73
+    Height = 25
+    Caption = #30830#23450
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    OnClick = btnGPJYSureClick
+  end
+  object btnGPJYCancle: TButton
+    Left = 354
+    Top = 454
+    Width = 73
+    Height = 25
+    Caption = #21462#28040
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #40657#20307
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    OnClick = btnGPJYCancleClick
+  end
+  object edtZQYWCJSL: TEdit
+    Left = 340
+    Top = 138
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 5
+  end
+  object cbbGPJYJYFX: TComboBox
+    Left = 340
+    Top = 79
+    Width = 83
+    Height = 21
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 6
+    Text = #20080#20837
+    Items.Strings = (
+      #20080#20837
+      #21334#20986)
+  end
+  object cbbGPJYJYSC: TComboBox
+    Left = 119
+    Top = 138
+    Width = 83
+    Height = 21
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 7
+    Text = #19978#28023
+    Items.Strings = (
+      #19978#28023
+      #28145#22323)
+  end
+  object edtGPJYJSF: TEdit
+    Left = 340
+    Top = 265
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 8
+  end
+  object edtGPJYYHS: TEdit
+    Left = 119
+    Top = 265
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 9
+  end
+  object edtGPJYZGF: TEdit
+    Left = 340
+    Top = 332
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 10
+  end
+  object edtGPJYGHF: TEdit
+    Left = 119
+    Top = 332
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 11
+  end
+  object edtGPJYYJ: TEdit
+    Left = 340
+    Top = 395
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 12
+  end
+  object edtGPJYSXF: TEdit
+    Left = 119
+    Top = 393
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 13
+  end
+  object edtGPJYCJJG: TEdit
+    Left = 116
+    Top = 201
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 14
+  end
+  object edtGPJYCJJE: TEdit
+    Left = 335
+    Top = 201
+    Width = 83
+    Height = 24
+    BiDiMode = bdRightToLeftNoAlign
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 15
+  end
+  object qryGPJY: TADOQuery
+    Connection = MainForm.conMainForm
+    Parameters = <>
+    Left = 253
+    Top = 452
+  end
+end
