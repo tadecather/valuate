@@ -257,7 +257,7 @@ begin
 
 end;
 
-
+// 关闭窗口的时候，将日期数据写入到配置文件中去
 procedure TMainForm.FormClose(Sender: TObject;var Action: TCloseAction);
 Var FilePath , P1: String;
     configFile : TextFile;
@@ -265,6 +265,7 @@ begin
   P1 := '# This File is used For System Time Setting';
   FilePath := 'config/system.cfg';
   AssignFile(configFile, FilePath);
+  // 使用 Rewrite 直接覆盖掉文件
   ReWrite(configFile);
   WriteLn(configFile,p1);
   p1 := 'SYSTEM_TIME = ' + FormatDatetime('YYYY/MM/DD', MainForm.dtpMainForm.DateTime);
@@ -274,7 +275,6 @@ begin
   CloseFile(configFile);
   Application.Terminate;
 end;
-
 
 // 改变选中的颜色
 procedure TMainForm.SubMenuSysMCustomDrawItem(Sender: TCustomTreeView;
@@ -298,15 +298,17 @@ begin
   begin
     if Application.MessageBox('确定退出系统？','提示',MB_YESNO)=ID_Yes then
     begin
+      sendMessage(self.Handle, WM_CLOSE, 0, 0);
       Application.Terminate;
     end;
   end
   else if(MainForm.SubMenuSysM.Selected.Text='切换用户') then
   begin
-    if Application.MessageBox('确定切换系统？','提示',MB_YESNO)=ID_Yes then
+    if Application.MessageBox('确定切换用户？','提示',MB_YESNO)=ID_Yes then
     begin
-       Application.Terminate;
-       Winexec('project1.exe', sw_show);
+      sendMessage(self.Handle, WM_CLOSE, 0, 0);
+      Application.Terminate;
+      Winexec('project1.exe', sw_show);
     end;
 
   end;
@@ -330,8 +332,6 @@ begin
   end;
 end;
 
-
-
 //DBGrid 右键菜单操作
 // 删除
 procedure TMainForm.UserDBGDelClick(Sender: TObject);
@@ -350,7 +350,6 @@ begin
   UserForm.UserFormPasswdEdit2.Visible:=False;
   UserForm.UserFormSureButton.Visible:=True;
   UserForm.UserFormCancleButton.Caption:='取消';
-  //MainForm.Visible:=False;
   UserForm.Show;
 end;
 
@@ -413,7 +412,6 @@ begin
 
   UserForm.UserFormSureButton.Visible:=False;
   UserForm.UserFormCancleButton.Caption:='确定';
-  //MainForm.Visible:=False;
   UserForm.Show;
 end;
 
@@ -436,7 +434,6 @@ begin
   UserForm.UserFormPasswdEdit2.Text:='';
   UserForm.UserFormSureButton.Visible:=True;
   UserForm.UserFormCancleButton.Caption:='取消';
-  //MainForm.Visible:=False;
   UserForm.Show;
 end;
 
@@ -446,16 +443,6 @@ end;
 procedure TMainForm.BasicSettingTabShow(Sender: TObject);
 begin
   BasicSubMenuTreeView.Items.Item[0].Selected:=True;
-//  with UserADOQuery do
-//  begin
-//    Close;
-//    SQL.Clear;
-//    SQL.Add('Select * from TJYFL');
-//
-//    Open;
-//    db.TNumericField(UserADOQuery.FieldByName('TJYFL_JSF')).DisplayFormat := '0.0000000';
-//    ChangedbgrXTSZTitle(Sender);
-//  end;
   SelectAllBasicSetting(Sender, '交易费率设置');
   BasicSettingDBGrid.Visible:= True;
 end;
@@ -953,8 +940,36 @@ begin
     end
     else if (BasicSubMenuTreeView.Selected.Text='证券信息设置') then
     begin
-      SQL.Add('Select * from TZQXX where TZQXX_ZQDM=:a');
-      Parameters.ParamByName('a').Value:=BasicSearchEdit.Text;
+      //如果搜索框的证券代码不为 空 的话,搜素具体的证券信息
+      if (BasicSearchEdit.Text <> '') then
+      begin
+        // 如果是全部的话，就选择全部进行查询
+        if (BasicZQLXComboBox.Text = '全部') then
+        begin
+          SQL.Add('Select * from TZQXX where TZQXX_ZQDM=:a');
+          Parameters.ParamByName('a').Value:=trim(BasicSearchEdit.Text);
+        end
+        //如果搜索框的证券代码为 空 的话,搜素证券类别
+        else
+        begin
+          SQL.Add('Select * from TZQXX where TZQXX_ZQDM=:a and TZQXX_ZQLB=:b');
+          Parameters.ParamByName('a').Value:=trim(BasicSearchEdit.Text);
+          Parameters.ParamByName('b').Value:=BasicZQLXComboBox.Text;
+        end;
+      end
+      else
+      begin
+        if (BasicZQLXComboBox.Text = '全部') then
+        begin
+          SQL.Add('Select * from TZQXX');
+        end
+        else
+        begin
+          SQL.Add('Select * from TZQXX where TZQXX_ZQLB=:a');
+          Parameters.ParamByName('a').Value:=BasicZQLXComboBox.Text;
+        end;
+      end; 
+
       Open;
     end
     else if (BasicSubMenuTreeView.Selected.Text='会计科目设置') then
@@ -1747,7 +1762,6 @@ begin
     ZQYWXGForm1.dtpXGYWRQ.Date:=dbgrdZQYW.Fields[6].AsDateTime;
     ZQYWXGForm1.edtXGZQMC.Text:=dbgrdZQYW.Fields[7].Text;
 
-
     ZQYWXGForm1.cbbXGYWLB.Enabled:=False;
 
     ZQYWXGForm1.btnXGSure.Visible:=True;
@@ -2453,7 +2467,7 @@ begin
     ExecSQL;
   end;
 
-  ShowMessage('日终清算已经完成，请查看！');
+  ShowMessage('日终清算已经完成！');
   lblRCCZCLJD.Caption := '处理完成！';
   lblRCCZCLJD.Update;
 end;
@@ -2491,7 +2505,13 @@ begin
     ExecSQL;
   end;
 
-  ShowMessage('凭证已经生成，请查看！');
+  if Application.MessageBox('凭证已经生成，现在去查看？','提示',MB_YESNO)=ID_Yes then
+  begin
+    PageControl1.ActivePage := tsBBCK;
+    tvBBCKMenu.Items.Item[0].Selected := True;
+    dtpBBCKYWRQ.DateTime  := dtpRCCZYWRQ.DateTime;
+    tvBBCKOnChange(Sender);
+  end;
 
   lblRCCZCLJD.Visible := False;
   lblRCCZCLJD.Update;
@@ -2500,6 +2520,7 @@ end;
 //生成估值表
 procedure TMainForm.Button1Click(Sender: TObject);
 begin
+  ShowMessage('请确保所有的数据都是最新的!');
   // 调用存储过程生成估值表
     with UserADOQuery do
     begin
@@ -2508,34 +2529,31 @@ begin
       SQL.Add('select * from tkjkmye where tkjkmye_ywrq=:a');
       Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime);
       Open;
-      if (RecordCount > 0) then
+      if (RecordCount < 1) then
       begin
-        Close;
-        SQL.Clear;
-        SQL.Add('select * from tgz where tgz_ywrq=:a');
-        Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime-1);
-        Open;
-        if (RecordCount > 0) then
-        begin
-          Close;
-          SQL.Clear;
-          SQL.Add('begin scgzb(:a); end;');
-          Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime);
-          ExecSQL;
-        end
-        else
-        begin
           showmessage('前一天估值表没有生成，无法生成当日估值表！！！');
           lblRCCZCLJD.Visible := False;
           exit;
-        end
-      end
-      else
+      end;
+
+      Close;
+      SQL.Clear;
+      SQL.Add('select * from tgz where tgz_ywrq=:a');
+      Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime-1);
+      Open;
+      
+      if (RecordCount < 1) then
       begin
         showmessage('请先生成今天的会计科目余额表！！！');
         lblRCCZCLJD.Visible := False;
         exit;
       end;
+
+      Close;
+      SQL.Clear;
+      SQL.Add('begin scgzb(:a); end;');
+      Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime);
+      ExecSQL;
     end;
 
     if Application.MessageBox('估值表已经生成，现在去查看？','提示',MB_YESNO)=ID_Yes then
@@ -2548,46 +2566,33 @@ begin
     end;
 
     lblRCCZCLJD.Visible := False;
+    lblRCCZCLJD.Update;
 end;
 
 // 生成会计科目余额表
 procedure TMainForm.Button2Click(Sender: TObject);
 begin
   // 调用存储过程生成会计科目余额表
-    with UserADOQuery do
-    begin
-      {Close;          //判断T-1日会计科目余额表是否存在
-      SQL.Clear;
-      SQL.Add('select * from tkjkmye where tkjkmye_ywrq=:a');
-      Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime-1);
-      Open;
-      if (RecordCount > 0) then
-      begin  }
-        Close;
-        SQL.Clear;
-        SQL.Add('begin sckjkmyeb(:a); end;');
-        Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime);
-        ExecSQL;
-      {end
-      else
-      begin
-        showmessage('前一天会计科目余额表没有生成，无法生成当日会计科目余额表！！！');
-        lblRCCZCLJD.Visible := False;
-        exit;
-      end; }
-    end;
-    if Application.MessageBox('会计科目余额表已经生成，现在去查看？','提示',MB_YESNO)=ID_Yes then
-    begin
-      // 设置 ActivePage 之后， onshow 方法被调用，所有的页面对象已经被创建
-      PageControl1.ActivePage := tsBBCK;
-      // 选择需要的功能
-      tvBBCKMenu.Items.Item[2].Selected := True;
-      // 刷新界面
-      dtpBBCKYWRQ.DateTime  := dtpRCCZYWRQ.DateTime;
-      tvBBCKOnChange(Sender);
-
-    end;
-    lblRCCZCLJD.Visible := False;
+  with UserADOQuery do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('begin sckjkmyeb(:a); end;');
+    Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime);
+    ExecSQL;
+  end;
+  if Application.MessageBox('会计科目余额表已经生成，现在去查看？','提示',MB_YESNO)=ID_Yes then
+  begin
+    // 设置 ActivePage 之后， onshow 方法被调用，所有的页面对象已经被创建
+    PageControl1.ActivePage := tsBBCK;
+    // 选择需要的功能
+    tvBBCKMenu.Items.Item[2].Selected := True;
+    // 刷新界面
+    dtpBBCKYWRQ.DateTime  := dtpRCCZYWRQ.DateTime;
+    tvBBCKOnChange(Sender);
+  end;
+  lblRCCZCLJD.Visible := False;
+  lblRCCZCLJD.Update;
 end;
 
 // 凭证浏览按钮作用
@@ -2645,9 +2650,6 @@ begin
       dbgrdBBCK.Columns[6].Width := 50;
       dbgrdBBCK.Columns[7].Title.caption := '借贷方向';
       dbgrdBBCK.Columns[7].Width := 60;
-
-//      ShowScrollBar(dbgrdBBCK.Handle, SB_HORZ, False); //隐藏横向滚动条
-
     end
     else if(tvBBCKMenu.Selected.Text = '估值表查看') then
     begin
@@ -2682,9 +2684,6 @@ begin
       dbgrdBBCK.Columns[8].Width := 120;
       dbgrdBBCK.Columns[9].Title.caption := '估值增值';
       dbgrdBBCK.Columns[9].Width := 120;
-
-//      ShowScrollBar(dbgrdBBCK.Handle, SB_HORZ, False); //隐藏横向滚动条
-
     end
     else
     begin
@@ -2768,12 +2767,6 @@ begin
   except
   end;
 end;
-
-
-
-
-
-
 end.
 
 

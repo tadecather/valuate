@@ -321,7 +321,7 @@ begin
           Parameters.ParamByName('a').Value := qry2.Fields [4].Text;
           Parameters.ParamByName('b').Value := StrToInt(qry2.Fields[12].Text);
           Parameters.ParamByName('c').Value := StrToFloat(qry2.Fields[14].Text);
-          Parameters.ParamByName('d').Value := Abs(StrToFloat(qry2.Fields[23].Text));
+          Parameters.ParamByName('d').Value := StrToFloat(qry2.Fields[23].Text);
           rq := qry2.Fields[34].Text;
           Parameters.ParamByName('e').Value := VarToDateTime(copy(rq,1,4)+ '-' + copy(rq,5,2) + '-' + copy(rq,7,2));
           if(StrToFloat(qry2.Fields[23].Text) < 0)then

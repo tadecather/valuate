@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 141
-  Top = 164
+  Left = 201
+  Top = 121
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = #20272#20540#31995#32479
@@ -36,9 +36,9 @@ object MainForm: TMainForm
     Top = -1
     Width = 1162
     Height = 619
-    ActivePage = SysManageTab
+    ActivePage = tsRCCZ
     TabHeight = 30
-    TabIndex = 0
+    TabIndex = 4
     TabOrder = 0
     object SysManageTab: TTabSheet
       Caption = '    '#31995#32479#31649#29702'    '
@@ -266,6 +266,7 @@ object MainForm: TMainForm
         Top = 4
         Width = 65
         Height = 24
+        Style = csDropDownList
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -273,11 +274,13 @@ object MainForm: TMainForm
         Font.Style = []
         ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
         ItemHeight = 16
+        ItemIndex = 0
         ParentFont = False
         TabOrder = 8
+        Text = #20840#37096
         Visible = False
-        OnChange = BasicZQLXComboBoxChange
         Items.Strings = (
+          #20840#37096
           #32929#31080
           #20538#21048
           #22238#36141)
@@ -669,12 +672,12 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object lblRCCZCLJD: TLabel
-        Left = 341
+        Left = 377
         Top = 6
         Width = 52
         Height = 19
         Alignment = taRightJustify
-        Caption = #22788#29702#36827#24230
+        Caption = #27491#22312#22788#29702
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -721,7 +724,7 @@ object MainForm: TMainForm
         OnCloseUp = tvRCCZOnChange
       end
       object pbRCCZ: TProgressBar
-        Left = 400
+        Left = 440
         Top = 2
         Width = 165
         Height = 26
