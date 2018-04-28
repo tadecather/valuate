@@ -76,6 +76,14 @@ begin
       Parameters.ParamByName('c').Value:=edtDXZQDM.Text;
       Parameters.ParamByName('d').Value:=cbbDXJYSC.Text;
     end
+    else if (Caption='红股到账-修改') then
+    begin
+      SQL.Add('update THL set THL_YWRQ=:a,THL_DJSL=:b where THL_ZQDM=:c and THL_JYSC=:d and THL_YWLB=''红股到账''');
+      Parameters.ParamByName('a').Value:=FormatDatetime('YYYY/MM/DD', dtpDXJYRQ.DateTime);
+      Parameters.ParamByName('b').Value:=StrToInt(edtDXZCLX.Text);
+      Parameters.ParamByName('c').Value:=edtDXZQDM.Text;
+      Parameters.ParamByName('d').Value:=cbbDXJYSC.Text;
+    end
     else if (Caption='兑息业务-转出-修改') then
     begin
       SQL.Add('update TZQJY set TZQJY_JYRQ=:a,TZQJY_SQLX=:b where TZQJY_ZQDM=:c and TZQJY_JYSC=:d and TZQJY_JYFX=''兑息转出''');
@@ -122,6 +130,22 @@ begin
       Parameters.ParamByName('d').Value:=cbbDXJYSC.Text;
       Parameters.ParamByName('e').Value:=edtDXZQMC.Text;
     end
+    else if(Caption='红股到账-新增') then
+    begin
+      if (Trim(edtDXZQDM.Text) = '') or (Trim(cbbDXJYSC.Text) = '') then
+      begin
+        ShowMessage('请确保所有数据不为空！');
+        Exit;
+      end;
+      SQL.Add('insert into THL(THL_ZQDM,THL_ZQMC,THL_YWRQ,THL_DZRQ,THL_YWLB,THL_JYSC,THL_DJSL) '+
+            ' Values(:c,:e,:a,:f,''红股到账'',:d,:b)');
+      Parameters.ParamByName('a').Value:=FormatDatetime('YYYY/MM/DD', dtpDXJYRQ.DateTime);
+      Parameters.ParamByName('b').Value:=StrToInt(edtDXZCLX.Text);
+      Parameters.ParamByName('c').Value:=edtDXZQDM.Text;
+      Parameters.ParamByName('d').Value:=cbbDXJYSC.Text;
+      Parameters.ParamByName('e').Value:=edtDXZQMC.Text;
+      Parameters.ParamByName('f').Value:=FormatDatetime('YYYY/MM/DD', dtpDXJYRQ.DateTime + 1);
+    end
     else if(Caption='兑息业务-转出-新增') then
     begin
       if (Trim(edtDXZQDM.Text) = '') or (Trim(cbbDXJYSC.Text) = '') then
@@ -145,7 +169,7 @@ begin
         Exit;
       end;
       SQL.Add('insert into TZQJY(TZQJY_ZQDM,TZQJY_ZQMC,TZQJY_JYRQ,TZQJY_JYFX,TZQJY_JYSC,TZQJY_SQLX)'+
-               ' Values(:c,:e,:a,''兑息到账'',:d,:b)');
+               ' Values(:c,:e,:a,:f''兑息到账'',:d,:b)');
       Parameters.ParamByName('a').Value:=FormatDatetime('YYYY/MM/DD', dtpDXJYRQ.DateTime);
       Parameters.ParamByName('b').Value:=StrToFloat(edtDXZCLX.Text);
       Parameters.ParamByName('c').Value:=edtDXZQDM.Text;

@@ -1,10 +1,10 @@
 object ZQYWDXForm1: TZQYWDXForm1
-  Left = 875
-  Top = 400
+  Left = 434
+  Top = 231
   Width = 497
-  Height = 250
+  Height = 201
   Caption = #20817#24687#19994#21153'-'
-  Color = clBtnFace
+  Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -44,7 +44,7 @@ object ZQYWDXForm1: TZQYWDXForm1
   end
   object lblDXJYSC: TLabel
     Left = 255
-    Top = 83
+    Top = 70
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -58,7 +58,7 @@ object ZQYWDXForm1: TZQYWDXForm1
   end
   object lblDXZQMC: TLabel
     Left = 39
-    Top = 78
+    Top = 65
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -72,7 +72,7 @@ object ZQYWDXForm1: TZQYWDXForm1
   end
   object lblDXZCLX: TLabel
     Left = 39
-    Top = 142
+    Top = 108
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -95,6 +95,7 @@ object ZQYWDXForm1: TZQYWDXForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 0
@@ -109,13 +110,14 @@ object ZQYWDXForm1: TZQYWDXForm1
     Time = 43186.4417155324
     DateFormat = dfShort
     DateMode = dmComboBox
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     Kind = dtkDate
     ParseInput = False
     TabOrder = 1
   end
   object edtDXZQMC: TEdit
     Left = 119
-    Top = 79
+    Top = 66
     Width = 81
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -124,13 +126,14 @@ object ZQYWDXForm1: TZQYWDXForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 2
   end
   object cbbDXJYSC: TComboBox
     Left = 340
-    Top = 79
+    Top = 66
     Width = 83
     Height = 21
     Font.Charset = ANSI_CHARSET
@@ -138,6 +141,7 @@ object ZQYWDXForm1: TZQYWDXForm1
     Font.Height = -13
     Font.Name = #40657#20307
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ItemHeight = 13
     ParentFont = False
     TabOrder = 3
@@ -147,7 +151,7 @@ object ZQYWDXForm1: TZQYWDXForm1
   end
   object edtDXZCLX: TEdit
     Left = 119
-    Top = 143
+    Top = 105
     Width = 81
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -156,13 +160,14 @@ object ZQYWDXForm1: TZQYWDXForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 4
   end
   object btnDXSure: TButton
     Left = 276
-    Top = 150
+    Top = 105
     Width = 73
     Height = 25
     Caption = #30830#23450
@@ -177,7 +182,7 @@ object ZQYWDXForm1: TZQYWDXForm1
   end
   object btnDXCancle: TButton
     Left = 348
-    Top = 150
+    Top = 105
     Width = 73
     Height = 25
     Caption = #21462#28040
@@ -194,6 +199,6 @@ object ZQYWDXForm1: TZQYWDXForm1
     Connection = MainForm.conMainForm
     Parameters = <>
     Left = 247
-    Top = 149
+    Top = 104
   end
 end

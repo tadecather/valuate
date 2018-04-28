@@ -324,10 +324,10 @@ begin
           Parameters.ParamByName('d').Value := StrToFloat(qry2.Fields[23].Text);
           rq := qry2.Fields[34].Text;
           Parameters.ParamByName('e').Value := VarToDateTime(copy(rq,1,4)+ '-' + copy(rq,5,2) + '-' + copy(rq,7,2));
-          if(StrToFloat(qry2.Fields[23].Text) < 0)then
-            Parameters.ParamByName('f').Value := '买入'
+          if(StrToFloat(qry2.Fields[12].Text) < 0)then
+            Parameters.ParamByName('f').Value := '卖出'
           else
-           Parameters.ParamByName('f').Value := '卖出';
+           Parameters.ParamByName('f').Value := '买入';
           Parameters.ParamByName('g').Value := FormatDatetime('YYYY/MM/DD', ywrq);
           ExecSQL;
         end;

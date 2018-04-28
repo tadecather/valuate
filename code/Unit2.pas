@@ -1480,6 +1480,12 @@ begin
       Parameters.ParamByName('a').Value:=FormatDatetime('YYYY-MM-DD', dtpZQYWKSRQ.DateTime);
       Parameters.ParamByName('b').Value:=FormatDatetime('YYYY-MM-DD', dtpZQYWJSRQ.DateTime);
     end
+    else if(tvZQYW.Selected.Text='红利送股') then
+    begin
+      SQL.Add('select * from THL where THL_YWRQ between :a and :b and THL_YWLB=''红股到账''');
+      Parameters.ParamByName('a').Value:=FormatDatetime('YYYY-MM-DD', dtpZQYWKSRQ.DateTime);
+      Parameters.ParamByName('b').Value:=FormatDatetime('YYYY-MM-DD', dtpZQYWJSRQ.DateTime);
+    end
     else if(tvZQYW.Selected.Text='债券交易') then
     begin
       SQL.Add('select * from TZQJY where TZQJY_JYRQ between :a and :b and (TZQJY_JYFX=''买入'' or TZQJY_JYFX=''卖出'')');
@@ -1612,6 +1618,27 @@ begin
     ZQYWDXForm1.edtDXZCLX.Text:=dbgrdZQYW.Fields[7].Text;
 
     ZQYWDXForm1.lblDXZCLX.Caption:='分红金额';
+    ZQYWDXForm1.btnDXSure.Visible:=False;
+    ZQYWDXForm1.btnDXCancle.Caption:='确定';
+
+    ZQYWDXForm1.edtDXZQDM.Enabled := False;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
+    ZQYWDXForm1.dtpDXJYRQ.Enabled := False;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := False;
+    ZQYWDXForm1.edtDXZCLX.Enabled := False;
+  end
+  else if(tvZQYW.Selected.Text='红利送股') then
+  begin
+    ZQYWDXForm1.Show;
+    ZQYWDXForm1.Caption:='红股到账-查看';
+    // TODO 参数设置
+     ZQYWDXForm1.edtDXZQDM.Text:=dbgrdZQYW.Fields[4].Text;
+    ZQYWDXForm1.edtDXZQMC.Text:=dbgrdZQYW.Fields[5].Text;
+    ZQYWDXForm1.dtpDXJYRQ.Date:=dbgrdZQYW.Fields[0].AsDateTime;
+    ZQYWDXForm1.cbbDXJYSC.Text:=dbgrdZQYW.Fields[3].Text;
+    ZQYWDXForm1.edtDXZCLX.Text:=dbgrdZQYW.Fields[6].Text;
+
+    ZQYWDXForm1.lblDXZCLX.Caption:='分红数量';
     ZQYWDXForm1.btnDXSure.Visible:=False;
     ZQYWDXForm1.btnDXCancle.Caption:='确定';
 
@@ -1805,7 +1832,28 @@ begin
     ZQYWDXForm1.btnDXCancle.Caption:='取消';
 
     ZQYWDXForm1.edtDXZQDM.Enabled := False;
-    ZQYWDXForm1.edtDXZQMC.Enabled := True;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
+    ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := False;
+    ZQYWDXForm1.edtDXZCLX.Enabled := True;
+  end
+  else if(tvZQYW.Selected.Text='红利送股') then
+  begin
+    ZQYWDXForm1.Show;
+    ZQYWDXForm1.Caption:='红股到账-修改';
+    // TODO 参数设置
+     ZQYWDXForm1.edtDXZQDM.Text:=dbgrdZQYW.Fields[4].Text;
+    ZQYWDXForm1.edtDXZQMC.Text:=dbgrdZQYW.Fields[5].Text;
+    ZQYWDXForm1.dtpDXJYRQ.Date:=dbgrdZQYW.Fields[0].AsDateTime;
+    ZQYWDXForm1.cbbDXJYSC.Text:=dbgrdZQYW.Fields[3].Text;
+    ZQYWDXForm1.edtDXZCLX.Text:=dbgrdZQYW.Fields[6].Text;
+
+    ZQYWDXForm1.lblDXZCLX.Caption:='分红数量';
+    ZQYWDXForm1.btnDXSure.Visible:=True;
+    ZQYWDXForm1.btnDXCancle.Caption:='取消';
+
+    ZQYWDXForm1.edtDXZQDM.Enabled := False;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
@@ -1934,7 +1982,7 @@ begin
   end
   // 暂未分类，需要分类
   else if (tvZQYW.Selected.Text='新股中签') or (tvZQYW.Selected.Text='中签缴款')
-  or (tvZQYW.Selected.Text='中签交收') or (tvZQYW.Selected.Text='新股流通')then
+      or (tvZQYW.Selected.Text='中签交收') or (tvZQYW.Selected.Text='新股流通')then
   begin
 
     ZQYWXGForm1.Caption:='新股业务-新增';
@@ -1996,6 +2044,27 @@ begin
     ZQYWDXForm1.edtDXZCLX.Text:='0';
 
     ZQYWDXForm1.lblDXZCLX.Caption:='分红金额';
+    ZQYWDXForm1.btnDXSure.Visible:=True;
+    ZQYWDXForm1.btnDXCancle.Caption:='取消';
+
+    ZQYWDXForm1.edtDXZQDM.Enabled := True;
+    ZQYWDXForm1.edtDXZQMC.Enabled := True;
+    ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := True;
+    ZQYWDXForm1.edtDXZCLX.Enabled := True;
+  end
+  else if(tvZQYW.Selected.Text='红利送股') then
+  begin
+    ZQYWDXForm1.Show;
+    ZQYWDXForm1.Caption:='红股到账-新增';
+    // TODO 参数设置
+     ZQYWDXForm1.edtDXZQDM.Text:='';
+    ZQYWDXForm1.edtDXZQMC.Text:='';
+    ZQYWDXForm1.dtpDXJYRQ.Date:= Now();
+    ZQYWDXForm1.cbbDXJYSC.Text:='';
+    ZQYWDXForm1.edtDXZCLX.Text:='0';
+
+    ZQYWDXForm1.lblDXZCLX.Caption:='分红数量';
     ZQYWDXForm1.btnDXSure.Visible:=True;
     ZQYWDXForm1.btnDXCancle.Caption:='取消';
 
@@ -2156,6 +2225,11 @@ begin
       SQL.Add('select * from THL where THL_ZQDM=:a and THL_YWLB=''红利到账''');
       Parameters.ParamByName('a').Value:=Trim(edtZQYWSearch.Text);
     end
+    else if(tvZQYW.Selected.Text='红利送股') then
+    begin
+      SQL.Add('select * from THL where THL_ZQDM=:a and THL_YWLB=''红股到账''');
+      Parameters.ParamByName('a').Value:=Trim(edtZQYWSearch.Text);
+    end
     else if(tvZQYW.Selected.Text='债券交易') or (tvZQYW.Selected.Text='债券业务') then
     begin
       SQL.Add('select * from TZQJY where TZQJY_ZQDM=:a and (TZQJY_JYFX=''买入'' or TZQJY_JYFX=''卖出''）');
@@ -2218,7 +2292,7 @@ begin
       Columns[12].Width := 100;
     end
     else if(tvZQYW.Selected.Text='新股中签') or (tvZQYW.Selected.Text='中签缴款')
-           or (tvZQYW.Selected.Text='中签交收') or (tvZQYW.Selected.Text='新股流通') then
+           or (tvZQYW.Selected.Text='中签交收') or (tvZQYW.Selected.Text='新股流通')then
     begin
       Columns[0].Title.Caption := '证券代码';
       Columns[0].Width := 100;
@@ -2239,7 +2313,8 @@ begin
       Columns[8].Title.Caption := '交易日期';
       Columns[8].Width := 100;
     end
-    else if(tvZQYW.Selected.Text='红利除权') or (tvZQYW.Selected.Text='红利到账') then
+    else if(tvZQYW.Selected.Text='红利除权') or (tvZQYW.Selected.Text='红利到账')
+          or (tvZQYW.Selected.Text='红利送股')  then
     begin
       Columns[0].title.caption := '业务日期';
       columns[0].Width := 100;

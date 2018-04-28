@@ -1,6 +1,6 @@
 object LoginForm: TLoginForm
-  Left = 435
-  Top = 180
+  Left = 431
+  Top = 198
   BiDiMode = bdLeftToRight
   BorderIcons = []
   BorderStyle = bsNone
