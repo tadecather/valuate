@@ -1,10 +1,10 @@
 object ZQYWXGForm1: TZQYWXGForm1
-  Left = 724
-  Top = 205
+  Left = 540
+  Top = 217
   Width = 468
-  Height = 358
+  Height = 280
   Caption = 'ZQYWXGForm'
-  Color = clBtnFace
+  Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -45,7 +45,7 @@ object ZQYWXGForm1: TZQYWXGForm1
   end
   object lblXGYWLB: TLabel
     Left = 249
-    Top = 83
+    Top = 68
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -59,7 +59,7 @@ object ZQYWXGForm1: TZQYWXGForm1
   end
   object lblXGZQMC: TLabel
     Left = 33
-    Top = 78
+    Top = 63
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -73,7 +73,7 @@ object ZQYWXGForm1: TZQYWXGForm1
   end
   object lblXGCJSL: TLabel
     Left = 249
-    Top = 139
+    Top = 105
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -87,7 +87,7 @@ object ZQYWXGForm1: TZQYWXGForm1
   end
   object lblXGCJJE: TLabel
     Left = 33
-    Top = 204
+    Top = 148
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -101,7 +101,7 @@ object ZQYWXGForm1: TZQYWXGForm1
   end
   object lblXGCJJG: TLabel
     Left = 249
-    Top = 202
+    Top = 146
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -115,7 +115,7 @@ object ZQYWXGForm1: TZQYWXGForm1
   end
   object lblXGJYSC: TLabel
     Left = 33
-    Top = 139
+    Top = 105
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -128,7 +128,7 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentFont = False
   end
   object edtXGZQDM: TEdit
-    Left = 113
+    Left = 107
     Top = 22
     Width = 81
     Height = 24
@@ -144,7 +144,7 @@ object ZQYWXGForm1: TZQYWXGForm1
     TabOrder = 0
   end
   object dtpXGYWRQ: TDateTimePicker
-    Left = 334
+    Left = 322
     Top = 23
     Width = 90
     Height = 25
@@ -159,8 +159,8 @@ object ZQYWXGForm1: TZQYWXGForm1
     TabOrder = 1
   end
   object edtXGZQMC: TEdit
-    Left = 113
-    Top = 79
+    Left = 107
+    Top = 64
     Width = 81
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -175,8 +175,8 @@ object ZQYWXGForm1: TZQYWXGForm1
     TabOrder = 2
   end
   object edtXGCJSL: TEdit
-    Left = 334
-    Top = 138
+    Left = 322
+    Top = 104
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -189,10 +189,11 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 3
+    OnEnter = EditInitContent
   end
   object cbbXGYWLB: TComboBox
-    Left = 334
-    Top = 79
+    Left = 322
+    Top = 64
     Width = 83
     Height = 21
     Font.Charset = ANSI_CHARSET
@@ -213,8 +214,8 @@ object ZQYWXGForm1: TZQYWXGForm1
       #26032#32929#27969#36890)
   end
   object cbbXGJYSC: TComboBox
-    Left = 113
-    Top = 138
+    Left = 107
+    Top = 104
     Width = 83
     Height = 21
     Font.Charset = ANSI_CHARSET
@@ -232,8 +233,8 @@ object ZQYWXGForm1: TZQYWXGForm1
       #28145#22323)
   end
   object edtXGCJJG: TEdit
-    Left = 334
-    Top = 201
+    Left = 322
+    Top = 145
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -246,10 +247,11 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 6
+    OnEnter = EditInitContent
   end
   object edtXGCJJE: TEdit
-    Left = 113
-    Top = 201
+    Left = 107
+    Top = 145
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -262,10 +264,11 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 7
+    OnEnter = EditInitContent
   end
   object btnXGSure: TButton
-    Left = 269
-    Top = 261
+    Left = 262
+    Top = 192
     Width = 73
     Height = 25
     Caption = #30830#23450
@@ -279,8 +282,8 @@ object ZQYWXGForm1: TZQYWXGForm1
     OnClick = btnXGSureClick
   end
   object btnXGCancle: TButton
-    Left = 341
-    Top = 261
+    Left = 334
+    Top = 192
     Width = 73
     Height = 25
     Caption = #21462#28040
@@ -293,10 +296,29 @@ object ZQYWXGForm1: TZQYWXGForm1
     TabOrder = 9
     OnClick = btnXGCancleClick
   end
+  object cbbXGZQDM: TComboBox
+    Left = 111
+    Top = 23
+    Width = 143
+    Height = 21
+    AutoComplete = False
+    AutoDropDown = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 10
+    OnChange = SelectZQXX
+    OnSelect = AutoZQXX
+  end
   object qryXGYW: TADOQuery
     Connection = MainForm.conMainForm
     Parameters = <>
-    Left = 240
-    Top = 260
+    Left = 233
+    Top = 191
   end
 end

@@ -6,7 +6,9 @@ uses  SysUtils, Variants, Classes,Windows, Messages, Dialogs, DB, ADODB,
        XMLDoc, xmldom, XMLIntf, msxmldom;
     function getStringOfDate(date : TDateTime): String;
     function getStringOfDateNoYear(date : TDateTime): String;
+    function getStringOf_Date(date : TDateTime): String;
     function jkFileToDataBase(jkType: String; filePath,fileName: String;ywrq: TDateTime): Boolean;
+    function jkFileAlready(SQLString: String): Boolean;
 
 implementation
 
@@ -20,6 +22,31 @@ function getStringOfDateNoYear(date : TDateTime): String;
 begin
   Result := FormatDatetime('MMDD',date);
 end;
+
+function getStringOf_Date(date : TDateTime): String;
+begin
+  Result := FormatDatetime('YYYY-MM-DD',date);
+end;
+
+// 判断接口表中的数据是否已经存在 传入参数为 SQL 语句
+function jkFileAlready(SQLString: String): Boolean;
+Var qry1: TADOQuery;
+begin
+  qry1 := TADOQuery.Create(MainForm);
+  qry1.ConnectionString :=  MainForm.conMainForm.ConnectionString;
+  with qry1 do
+  begin
+    Close;
+    Clear;
+    SQL.Add(SQLString);
+    Open;
+
+    if RecordCount > 0 then Result := True
+    else Result := False;
+  end;
+  qry1.Destroy;
+end;
+
 
 // 将接口文件中的数据读入到接口表中去
 function jkFileToDataBase(jkType: String; filePath,fileName: String; ywrq: TDateTime): Boolean;

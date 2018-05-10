@@ -443,6 +443,8 @@ end;
 procedure TMainForm.BasicSettingTabShow(Sender: TObject);
 begin
   BasicSubMenuTreeView.Items.Item[0].Selected:=True;
+  BasicAddButton.Visible := True;
+  BasicDBGDeleteButton.Visible:=True;
   SelectAllBasicSetting(Sender, '交易费率设置');
   BasicSettingDBGrid.Visible:= True;
 end;
@@ -903,7 +905,7 @@ begin
     ZQXXGPForm1.ZQXXGPMGMZEdit.Enabled := True;
   end
 // 如果选择的是 会计科目设置的时候作用
-  else
+  else if BasicSubMenuTreeView.Selected.Text='会计科目设置' then
   begin
     KJKMForm1.show;
     KJKMForm1.Caption:='会计科目-新增';
@@ -915,6 +917,30 @@ begin
     KJKMForm1.KJKMKMDMEdit.Enabled := True;
     KJKMForm1.KJKMKMMCEdit.Enabled := True;
     KJKMForm1.cbbKJKMJDFX.Enabled := True;
+  end
+  else if BasicSubMenuTreeView.Selected.Text='交易费率设置' then
+  begin
+    JYFLForm1.Caption:='交易费率-新增';
+
+    JYFLForm1.JYSCEdit.Text:='';
+    JYFLForm1.JYLXEdit.Text:='';
+    JYFLForm1.YHEdit.Text:='0.0';
+    JYFLForm1.JSEdit.Text:='0.0';
+    JYFLForm1.GHEdit.Text:='0.0';
+    JYFLForm1.ZGEdit.Text:='0.0';
+    JYFLForm1.YJEdit.Text:='0.0';
+
+    JYFLForm1.JYFLSureButton.Visible:=True;
+    JYFLForm1.JYFLCancleButton.Caption:='取消';
+
+    JYFLForm1.YHEdit.Enabled := True;
+    JYFLForm1.JSEdit.Enabled := True;
+    JYFLForm1.GHEdit.Enabled := True;
+    JYFLForm1.ZGEdit.Enabled := True;
+    JYFLForm1.YJEdit.Enabled := True;
+    JYFLForm1.JYLXEdit.Enabled := True;
+    JYFLForm1.JYSCEdit.Enabled := True;
+    JYFLForm1.Show;
   end;
 end;
 
@@ -1015,6 +1041,10 @@ begin
     BasicSearchButton.Visible:=True;
     // 设置右键菜单的删除按钮的可见性
     BasicDBGDeleteButton.Visible:=True;
+  end
+  else if(BasicSubMenuTreeView.Selected.Text='交易费率设置') then
+  begin
+    BasicAddButton.Visible:=True;
   end
   else
   begin
@@ -1202,27 +1232,28 @@ end;
 procedure TMainForm.BasicDBGDeleteButtonClick(Sender: TObject);
 Var ZQDM: String;
 begin
-  if BasicSettingDBGrid.Fields[0].Value = NULL then Exit;
-  ZQDM:=BasicSettingDBGrid.Fields[0].Value;
-  with UserADOQuery do
-  begin
-    Close;
-    SQL.Clear;
-    if(BasicSubMenuTreeView.Selected.Text='证券信息设置') then
-    begin
-      SQL.Add('delete from TZQXX where TZQXX_ZQDM=:a');
-      Parameters.ParamByName('a').Value:=ZQDM;
-  //    Parameters.ParamByName('a').Value:=BasicSettingDBGrid.Fields[0].Text;
-      end
-    else if(BasicSubMenuTreeView.Selected.Text='会计科目设置') then
-    begin
-      SQL.Add('delete from TKJKM where TKJKM_KMDM=:a');
-      Parameters.ParamByName('a').Value:=ZQDM;
-//      Parameters.ParamByName('a').Value:=BasicSettingDBGrid.Fields[0].Text;
-    end;
-    ExecSQL;
-    BasicSubMenuOnClick(Sender);
-  end;
+   BasicSettingDBGrid.DataSource.DataSet.Delete;
+//  if BasicSettingDBGrid.Fields[0].Value = NULL then Exit;
+//  ZQDM:=BasicSettingDBGrid.Fields[0].Value;
+//  with UserADOQuery do
+//  begin
+//    Close;
+//    SQL.Clear;
+//    if(BasicSubMenuTreeView.Selected.Text='证券信息设置') then
+//    begin
+//      SQL.Add('delete from TZQXX where TZQXX_ZQDM=:a');
+//      Parameters.ParamByName('a').Value:=ZQDM;
+//  //    Parameters.ParamByName('a').Value:=BasicSettingDBGrid.Fields[0].Text;
+//      end
+//    else if(BasicSubMenuTreeView.Selected.Text='会计科目设置') then
+//    begin
+//      SQL.Add('delete from TKJKM where TKJKM_KMDM=:a');
+//      Parameters.ParamByName('a').Value:=ZQDM;
+////      Parameters.ParamByName('a').Value:=BasicSettingDBGrid.Fields[0].Text;
+//    end;
+//    ExecSQL;
+//    BasicSubMenuOnClick(Sender);
+//  end;
 end;
 
 //..............................................................................权益公告维护
@@ -1604,6 +1635,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := False;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := False;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
     ZQYWDXForm1.Show;
   end
   else if(tvZQYW.Selected.Text='红利到账') then
@@ -1626,6 +1660,8 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := False;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := False;
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='红利送股') then
   begin
@@ -1647,6 +1683,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := False;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := False;
+    
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='债券交易') then
   begin
@@ -1695,6 +1734,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := False;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := False;
+    
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='兑息到账') then
   begin
@@ -1716,6 +1758,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := False;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := False;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='回购业务') then
   begin
@@ -1815,6 +1860,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='红利到账') then
   begin
@@ -1836,6 +1884,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+    
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='红利送股') then
   begin
@@ -1857,6 +1908,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+    
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='债券交易') then
   begin
@@ -1906,6 +1960,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+    
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='兑息到账') then
   begin
@@ -1927,6 +1984,9 @@ begin
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
     ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+    
+    ZQYWDXForm1.edtDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := False;
   end
   else if(tvZQYW.Selected.Text='回购业务') then
   begin
@@ -1972,7 +2032,8 @@ begin
     ZQYWGPJYForm1.edtGPJYGHF.Text:='0';
     ZQYWGPJYForm1.edtGPJYZGF.Text:='0';
     ZQYWGPJYForm1.edtGPJYYJ.Text:='0';
-    ZQYWGPJYForm1.edtGPJYSXF.Text:='0';
+    ZQYWGPJYForm1.edtGPJYSXF.Text:='0.000001';
+    ZQYWGPJYForm1.cbbGPJYZQDM.Text := '';
 
     ZQYWGPJYForm1.lblGPJYSXF.Caption:='手续费';
     ZQYWGPJYForm1.lblGPJYYJ.Caption:='佣金';
@@ -2027,10 +2088,14 @@ begin
     ZQYWDXForm1.btnDXCancle.Caption:='取消';
 
     ZQYWDXForm1.edtDXZQDM.Enabled := True;
-    ZQYWDXForm1.edtDXZQMC.Enabled := True;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
-    ZQYWDXForm1.cbbDXJYSC.Enabled := True;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := False;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := True;
+    ZQYWDXForm1.cbbZQDXZQDM.Text := '';
   end
   else if(tvZQYW.Selected.Text='红利到账') then
   begin
@@ -2048,10 +2113,13 @@ begin
     ZQYWDXForm1.btnDXCancle.Caption:='取消';
 
     ZQYWDXForm1.edtDXZQDM.Enabled := True;
-    ZQYWDXForm1.edtDXZQMC.Enabled := True;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
-    ZQYWDXForm1.cbbDXJYSC.Enabled := True;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := False;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := True;
   end
   else if(tvZQYW.Selected.Text='红利送股') then
   begin
@@ -2062,17 +2130,20 @@ begin
     ZQYWDXForm1.edtDXZQMC.Text:='';
     ZQYWDXForm1.dtpDXJYRQ.Date:= Now();
     ZQYWDXForm1.cbbDXJYSC.Text:='';
-    ZQYWDXForm1.edtDXZCLX.Text:=0;
+    ZQYWDXForm1.edtDXZCLX.Text:='0';
 
     ZQYWDXForm1.lblDXZCLX.Caption:='分红数量';
     ZQYWDXForm1.btnDXSure.Visible:=True;
     ZQYWDXForm1.btnDXCancle.Caption:='取消';
 
     ZQYWDXForm1.edtDXZQDM.Enabled := True;
-    ZQYWDXForm1.edtDXZQMC.Enabled := True;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
-    ZQYWDXForm1.cbbDXJYSC.Enabled := True;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := False;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := True;
   end
   else if(tvZQYW.Selected.Text='债券交易') then
   begin
@@ -2094,6 +2165,7 @@ begin
     ZQYWGPJYForm1.edtGPJYSXF.Text:='0';
     // 债券交易没有利息税，所以使用佣金的框作为利息税的展示
     ZQYWGPJYForm1.edtGPJYYJ.Text:='';
+    ZQYWGPJYForm1.cbbGPJYZQDM.Text := '';
 
     ZQYWGPJYForm1.lblGPJYSXF.Caption:='税前利息';
     ZQYWGPJYForm1.lblGPJYYJ.Caption:='利息税';
@@ -2117,10 +2189,13 @@ begin
     ZQYWDXForm1.btnDXCancle.Caption:='取消';
 
     ZQYWDXForm1.edtDXZQDM.Enabled := True;
-    ZQYWDXForm1.edtDXZQMC.Enabled := True;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
-    ZQYWDXForm1.cbbDXJYSC.Enabled := True;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := False;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := True;
   end
   else if(tvZQYW.Selected.Text='兑息到账') then
   begin
@@ -2138,10 +2213,13 @@ begin
     ZQYWDXForm1.btnDXCancle.Caption:='取消';
 
     ZQYWDXForm1.edtDXZQDM.Enabled := True;
-    ZQYWDXForm1.edtDXZQMC.Enabled := True;
+    ZQYWDXForm1.edtDXZQMC.Enabled := False;
     ZQYWDXForm1.dtpDXJYRQ.Enabled := True;
-    ZQYWDXForm1.cbbDXJYSC.Enabled := True;
+    ZQYWDXForm1.cbbDXJYSC.Enabled := False;
     ZQYWDXForm1.edtDXZCLX.Enabled := True;
+
+    ZQYWDXForm1.edtDXZQDM.Visible := False;
+    ZQYWDXForm1.cbbZQDXZQDM.Visible := True;
   end
   else if(tvZQYW.Selected.Text='回购业务') then
   begin
@@ -2414,7 +2492,7 @@ end;
 //  根据选择的 条目进行不同界面的显示
 procedure TMainForm.tvRCCZOnChange(Sender: TObject);
 var TItem:Tlistitem;
-    stringDate, stringDateNoYear,fileRealPath, fileRealName: String;
+    stringDate, stringDateNoYear,string_date,fileRealPath, fileRealName: String;
 begin
     // 设置进度条的label 不可见
      lblRCCZCLJD.Caption := '处理进度';
@@ -2423,6 +2501,7 @@ begin
     // 获取字符串类型的日期格式，方便后面的找文件和文件名拼接
     stringDate := FileOperation.getStringOfDate(dtpRCCZYWRQ.DateTime);
     stringDateNoYear := FileOperation.getStringOfDateNoYear(dtpRCCZYWRQ.DateTime);
+    string_Date := FileOperation.getStringOf_Date(dtpRCCZYWRQ.DateTime);
       // 设置listview头部
     lvRCCZ.Clear;
     lvRCCZ.Columns.Clear;
@@ -2430,14 +2509,17 @@ begin
     lvRCCZ.Columns.Add;
     lvRCCZ.Columns.Add;
     lvRCCZ.Columns.Add;
+    lvRCCZ.Columns.Add;
     lvRCCZ.Columns.Items[0].Caption:='状态';
-    lvRCCZ.Columns.Items[1].Caption:='接口名称';
-    lvRCCZ.Columns.Items[2].Caption:='路径';
-    lvRCCZ.Columns.Items[3].Caption:='文件名';
+    lvRCCZ.Columns.Items[1].Caption:='状态';
+    lvRCCZ.Columns.Items[2].Caption:='接口名称';
+    lvRCCZ.Columns.Items[3].Caption:='路径';
+    lvRCCZ.Columns.Items[4].Caption:='文件名';
     lvRCCZ.Columns.Items[0].Width:=80;
-    lvRCCZ.Columns.Items[1].Width:=150;
-    lvRCCZ.Columns.Items[2].Width:=400;
-    lvRCCZ.Columns.Items[3].Width:=lvRCCZ.Width - 400 - 150 - 85;
+    lvRCCZ.Columns.Items[1].Width:=80;
+    lvRCCZ.Columns.Items[2].Width:=150;
+    lvRCCZ.Columns.Items[3].Width:=320;
+    lvRCCZ.Columns.Items[4].Width:=lvRCCZ.Width - 400 - 150 - 85;
     lvRCCZ.ViewStyle:=vsReport;
     lvRCCZ.GridLines:=True;
 
@@ -2455,30 +2537,92 @@ begin
       begin
         TItem:=lvRCCZ.Items.Add;
         TItem.Caption:='True';
-        TItem.SubItems.Add(FieldByName('TJSLJ_JKMC').Value);
+
         // 获取文件的真实路径和真实名称
         fileRealPath := FieldByName('TJSLJ_WJLJ').Value + stringDate + '\';
         if(FieldByName('TJSLJ_WJMC').Value = 'cpxx*.txt') then
-          fileRealName := 'cpxx' + stringDateNoYear + '.txt'
+        begin
+          fileRealName := 'cpxx' + stringDateNoYear + '.txt';
+          //判断文件是否已经被读入
+          if FileOperation.jkFileAlready('select * from tjk_shzqxx where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'securities_*.xml') then
-          fileRealName := 'securities_' + StringDate + '.xml'
+        begin
+          fileRealName := 'securities_' + StringDate + '.xml';
+          if FileOperation.jkFileAlready('select * from tjk_szzqxx where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'mktdt00.txt') then
-          fileRealName := 'mktdt00.txt'
+        begin
+          fileRealName := 'mktdt00.txt';
+          if FileOperation.jkFileAlready('select * from tjk_mktdt00 where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'cashsecurityclosemd_*.xml') then
-          fileRealName := 'cashsecurityclosemd_' + StringDate + '.xml'
+        begin
+          fileRealName := 'cashsecurityclosemd_' + StringDate + '.xml';
+          if FileOperation.jkFileAlready('select * from tjk_cashsecurity where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'GH*.dbf') then
-          fileRealName := 'GH32562.dbf'
+        begin
+          fileRealName := 'GH32562.dbf';
+          if FileOperation.jkFileAlready('select * from tjk_gh where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'SJSMX1*.dbf') then
-          fileRealName := 'SJSMX1' + StringDateNoYear + '.dbf'
+        begin
+          fileRealName := 'SJSMX1' + StringDateNoYear + '.dbf';
+          if FileOperation.jkFileAlready('select * from tjk_sjsmx1 where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'JSMX*.dbf') then
-          fileRealName := 'JSMX'+ 'jsmr1' + '.dbf'
+        begin
+          fileRealName := 'JSMX'+ 'jsmr1' + '.dbf';
+          if FileOperation.jkFileAlready('select * from tjk_jsmx where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'ZQBD*.dbf') then
-          fileRealName := 'ZQBD' + 'jsmr1' + '.dbf'
+        begin
+          fileRealName := 'ZQBD' + 'jsmr1' + '.dbf';
+          if FileOperation.jkFileAlready('select * from tjk_zqbd where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'SJSFX*.dbf') then
-          fileRealName := 'SJSFX' + StringDateNoYear +'.dbf'
+        begin
+          fileRealName := 'SJSFX' + StringDateNoYear +'.dbf';
+          if FileOperation.jkFileAlready('select * from tjk_sjsfx where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end
         else if (FieldByName('TJSLJ_WJMC').Value = 'SJSJG*.dbf') then
+        begin
           fileRealName := 'SJSJG'+ StringDateNoYear + '.dbf';
-
+          if FileOperation.jkFileAlready('select * from tjk_sjsjg where d_ywrq=date''' +
+             string_Date + '''')
+          then TItem.SubItems.Add('True')
+          else  TItem.SubItems.Add('False');
+        end;
+        
+        TItem.SubItems.Add(FieldByName('TJSLJ_JKMC').Value);
         TItem.SubItems.Add(fileRealPath);
         TItem.SubItems.Add(fileRealName);
 
@@ -2497,10 +2641,19 @@ end;
 procedure TMainForm.customerDrawItem(Sender: TCustomListView; Item: TListItem; State: TCustomDrawState;
 var DefaultDraw: Boolean );
 begin
-  if( Item.Caption = 'False') then
+
+  if( Item.Caption = 'False')then
   begin
     Sender.Canvas.Font.Color :=clRed;
+  end
+  else
+  begin
+    if (Item.SubItems.Strings[0] = 'True') then
+    begin
+      Sender.Canvas.Font.Color :=clGreen;
+    end;
   end;
+
 end;
 
 // 日终清算按钮的作用
@@ -2519,17 +2672,20 @@ begin
   for i := 0 to lvRCCZ.Items.Count-1 do
   begin
     Titem2 := lvRCCZ.Items.Item[i];
-    lblRCCZCLJD.Caption :=  Titem2.subItems.Strings[0];
+    lblRCCZCLJD.Caption :=  Titem2.subItems.Strings[1];
     lblRCCZCLJD.Update;
     if( Titem2.Caption = 'True') then
-      FileOperation.jkFileToDataBase(Titem2.subItems.Strings[0],
-        Titem2.subItems.Strings[1],Titem2.subItems.Strings[2], dtpRCCZYWRQ.DateTime);
+      FileOperation.jkFileToDataBase(Titem2.subItems.Strings[1],
+        Titem2.subItems.Strings[2],Titem2.subItems.Strings[3], dtpRCCZYWRQ.DateTime);
     pbRCCZ.Position := pbRCCZ.Position + 1;
   end;
   pbRCCZ.Position := pbRCCZ.Max;
   pbRCCZ.Visible :=False;
   lblRCCZCLJD.Caption := '数据已导入，正在进行处理！';
   lblRCCZCLJD.Update;
+
+  tvRCCZOnChange(Sender);
+  lvRCCZ.Update;
 
 //   TODO 调用存储过程进行业务分类
   with UserADOQuery do
@@ -2561,7 +2717,8 @@ begin
       Parameters.ParamByName('a').Value:= FormatDatetime('YYYY/MM/DD', dtpRCCZYWRQ.DateTime);
       ExecSQL;
     end;
-    ShowMessage('数据已经恢复！');
+    tvRCCZOnChange(Sender);
+    lvRCCZ.Update;
   end;
 
 end;
@@ -2732,7 +2889,7 @@ begin
 
       SQL.Add('select tgz_kmdm,tgz_kmmc,tgz_sl,tgz_dwcb,tgz_zcb,'+
       'tgz_cbzjz,tgz_sj,tgz_zsz,tgz_szzjz,tgz_gzzz ' +
-      'from tgz where tgz_ywrq=:a');
+      'from tgz where tgz_ywrq=:a order by tgz_kmdm');
 
       Parameters.ParamByName('a').Value := FormatDatetime('YYYY/MM/DD', dtpBBCKYWRQ.DateTime);
       Open;
@@ -2765,7 +2922,7 @@ begin
       lblBCKTitle.Caption := '会计科目余额表查看';
 
       SQL.Add('select tkjkmye_kmdm,tkjkmye_kmmc,tkjkmye_jdfx,tkjkmye_jffsje,'+
-      'tkjkmye_dffsje,tkjkmye_ye from tkjkmye where tkjkmye_ywrq=:a');
+      'tkjkmye_dffsje,tkjkmye_ye from tkjkmye where tkjkmye_ywrq=:a order by tkjkmye_kmdm');
 
       Parameters.ParamByName('a').Value := FormatDatetime('YYYY/MM/DD', dtpBBCKYWRQ.DateTime);
       Open;

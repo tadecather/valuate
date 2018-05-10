@@ -2,9 +2,9 @@ object JYFLForm1: TJYFLForm1
   Left = 666
   Top = 175
   Width = 456
-  Height = 316
+  Height = 239
   Caption = #20132#26131#36153#29575#26356#25913
-  Color = clBtnFace
+  Color = clInactiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -44,7 +44,7 @@ object JYFLForm1: TJYFLForm1
   end
   object Label3: TLabel
     Left = 28
-    Top = 81
+    Top = 63
     Width = 72
     Height = 16
     Alignment = taRightJustify
@@ -58,7 +58,7 @@ object JYFLForm1: TJYFLForm1
   end
   object Label4: TLabel
     Left = 245
-    Top = 81
+    Top = 63
     Width = 72
     Height = 16
     Alignment = taRightJustify
@@ -72,7 +72,7 @@ object JYFLForm1: TJYFLForm1
   end
   object Label5: TLabel
     Left = 28
-    Top = 143
+    Top = 107
     Width = 72
     Height = 16
     Alignment = taRightJustify
@@ -86,7 +86,7 @@ object JYFLForm1: TJYFLForm1
   end
   object Label6: TLabel
     Left = 246
-    Top = 143
+    Top = 107
     Width = 72
     Height = 16
     Alignment = taRightJustify
@@ -100,7 +100,7 @@ object JYFLForm1: TJYFLForm1
   end
   object Label7: TLabel
     Left = 29
-    Top = 207
+    Top = 148
     Width = 72
     Height = 16
     Alignment = taRightJustify
@@ -114,7 +114,7 @@ object JYFLForm1: TJYFLForm1
   end
   object YHEdit: TEdit
     Left = 112
-    Top = 78
+    Top = 60
     Width = 81
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -123,6 +123,7 @@ object JYFLForm1: TJYFLForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 0
@@ -130,7 +131,7 @@ object JYFLForm1: TJYFLForm1
   end
   object JSEdit: TEdit
     Left = 328
-    Top = 78
+    Top = 60
     Width = 81
     Height = 24
     Font.Charset = DEFAULT_CHARSET
@@ -138,13 +139,14 @@ object JYFLForm1: TJYFLForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentFont = False
     TabOrder = 1
     Text = '0.00'
   end
   object GHEdit: TEdit
     Left = 112
-    Top = 140
+    Top = 104
     Width = 81
     Height = 24
     Font.Charset = DEFAULT_CHARSET
@@ -152,13 +154,14 @@ object JYFLForm1: TJYFLForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentFont = False
     TabOrder = 2
     Text = '0.00'
   end
   object ZGEdit: TEdit
     Left = 328
-    Top = 140
+    Top = 104
     Width = 81
     Height = 24
     Font.Charset = DEFAULT_CHARSET
@@ -166,13 +169,14 @@ object JYFLForm1: TJYFLForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentFont = False
     TabOrder = 3
     Text = '0.00'
   end
   object YJEdit: TEdit
     Left = 112
-    Top = 204
+    Top = 145
     Width = 81
     Height = 24
     Font.Charset = DEFAULT_CHARSET
@@ -180,13 +184,14 @@ object JYFLForm1: TJYFLForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentFont = False
     TabOrder = 4
     Text = '0.00'
   end
   object JYFLSureButton: TButton
-    Left = 256
-    Top = 202
+    Left = 263
+    Top = 144
     Width = 73
     Height = 25
     Caption = #30830#23450
@@ -200,8 +205,8 @@ object JYFLForm1: TJYFLForm1
     OnClick = JYFLSureButtonClick
   end
   object JYFLCancleButton: TButton
-    Left = 328
-    Top = 202
+    Left = 334
+    Top = 144
     Width = 73
     Height = 25
     Caption = #21462#28040
@@ -225,6 +230,7 @@ object JYFLForm1: TJYFLForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 7
@@ -239,13 +245,14 @@ object JYFLForm1: TJYFLForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentFont = False
     TabOrder = 8
   end
   object JYFLADOOperation: TADOQuery
     Connection = MainForm.conMainForm
     Parameters = <>
-    Left = 224
-    Top = 200
+    Left = 126
+    Top = 184
   end
 end

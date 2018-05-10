@@ -27,10 +27,15 @@ type
     btnXGSure: TButton;
     btnXGCancle: TButton;
     qryXGYW: TADOQuery;
+    cbbXGZQDM: TComboBox;
     procedure btnXGCancleClick(Sender: TObject);
     procedure btnXGSureClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+
+    procedure EditInitContent(Sender:TObject);
+    procedure SelectZQXX(Sender: TObject);
+    procedure AutoZQXX(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,7 +86,7 @@ begin
       begin
         Close;
         SQL.Clear;
-        SQL.Add('insert into TXG Values(:a,:b,:c,:d,:e,:f,:g,:h)');
+        SQL.Add('insert into TXG Values(:a,:b,:c,:d,:e,:f,:g,:h,:i)');
         Parameters.ParamByName('a').Value:= edtXGZQDM.Text;
         Parameters.ParamByName('b').Value:= cbbXGJYSC.Text;
         Parameters.ParamByName('c').Value:= cbbXGYWLB.Text;
@@ -90,6 +95,7 @@ begin
         Parameters.ParamByName('f').Value:= StrToInt(edtXGCJSL.Text);
         Parameters.ParamByName('g').Value:= FormatDatetime('YYYY/MM/DD', dtpXGYWRQ.DateTime);
         Parameters.ParamByName('h').Value:= edtXGZQMC.Text;
+        Parameters.ParamByName('i').Value:= MainForm.dtpMainForm.DateTime;
       end;
     end
     else if(Caption='新股业务-修改') then
@@ -141,6 +147,9 @@ begin
     edtXGCJSL.Enabled := False;
     edtXGCJJE.Enabled := False;
     edtXGCJJG.Enabled := False;
+
+    cbbXGZQDM.Visible := False;
+    edtXGZQDM.Visible := True;
   end
   else if (Caption = '新股业务-修改') then
   begin
@@ -152,18 +161,76 @@ begin
     edtXGCJSL.Enabled := True;
     edtXGCJJE.Enabled := True;
     edtXGCJJG.Enabled := True;
+
+    cbbXGZQDM.Visible := False;
+    edtXGZQDM.Visible := True;
   end
   else
   begin
     edtXGZQDM.Enabled := True;
     dtpXGYWRQ.Enabled := True;
-    edtXGZQMC.Enabled := True;
+    edtXGZQMC.Enabled := False;
     cbbXGYWLB.Enabled := False;
-    cbbXGJYSC.Enabled := True;
+    cbbXGJYSC.Enabled := False;
     edtXGCJSL.Enabled := True;
     edtXGCJJE.Enabled := True;
     edtXGCJJG.Enabled := True;
+
+    cbbXGZQDM.Visible := True;
+    edtXGZQDM.Visible := False;
+    cbbXGZQDM.Text := '';
   end;
+end;
+
+// 填写证券代码时，显示所有符合要求证券代码
+procedure TZQYWXGForm1.SelectZQXX(Sender: TObject);
+Var ZQDM :string;
+begin
+  ZQDM := TComboBox(Sender).Text;
+  TComboBox(Sender).Items.Clear;
+//  showMessage(ZQDM);
+  if ZQDM = '' then exit;
+  with qryXGYW do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select TZQXX_ZQDM,TZQXX_ZQMC,TZQXX_JYSC from tzqxx where '+
+    'tzqxx_zqlb=''股票'' and tzqxx_zqdm like :a');
+    Parameters.ParamByName('a').Value:=ZQDM + '%';
+    Open;
+    while not eof do
+    begin
+        TComboBox(Sender).Items.Add(Fields[0].Text + '-' +
+                Fields[1].Text + '-' + Fields[2].Text);
+        // 使用 next 使游标指向下一列
+        next;
+    end;
+  end;
+  TComboBox(Sender).DroppedDown := True;
+  SendMessage(TComboBox(Sender).Handle, WM_SETCURSOR, 0, 0);
+  TComboBox(Sender).Text := ZQDM;
+  TComboBox(Sender).SelStart := Length(ZQDM);
+end;
+
+// 选中一条证券代码以后，自动填充页面里面的信息
+procedure TZQYWXGForm1.AutoZQXX(Sender: TObject);
+Var
+    txtLines : TStringList;
+begin
+  txtLines := TStringList.Create;
+  txtLines.Delimiter := '-';
+
+  txtLines.DelimitedText := TComboBox(Sender).Text;
+  edtXGZQDM.Text := txtLines[0];
+//  cbbGPJYZQDM.Text := txtLines[0];
+  edtXGZQMC.Text := txtLines[1];
+  cbbXGJYSC.Text := txtLines[2];
+end;
+
+// 在点击进入输入控件时，替换控件内容为''
+procedure TZQYWXGForm1.EditInitContent(Sender:TObject);
+begin
+  TEdit(Sender).Text := '';
 end;
 
 end.

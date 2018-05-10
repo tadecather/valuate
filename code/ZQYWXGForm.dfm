@@ -2,7 +2,7 @@ object ZQYWXGForm1: TZQYWXGForm1
   Left = 540
   Top = 217
   Width = 468
-  Height = 281
+  Height = 280
   Caption = 'ZQYWXGForm'
   Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
@@ -189,6 +189,7 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 3
+    OnEnter = EditInitContent
   end
   object cbbXGYWLB: TComboBox
     Left = 322
@@ -246,6 +247,7 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 6
+    OnEnter = EditInitContent
   end
   object edtXGCJJE: TEdit
     Left = 107
@@ -262,6 +264,7 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 7
+    OnEnter = EditInitContent
   end
   object btnXGSure: TButton
     Left = 262
@@ -292,6 +295,25 @@ object ZQYWXGForm1: TZQYWXGForm1
     ParentFont = False
     TabOrder = 9
     OnClick = btnXGCancleClick
+  end
+  object cbbXGZQDM: TComboBox
+    Left = 111
+    Top = 23
+    Width = 143
+    Height = 21
+    AutoComplete = False
+    AutoDropDown = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 10
+    OnChange = SelectZQXX
+    OnSelect = AutoZQXX
   end
   object qryXGYW: TADOQuery
     Connection = MainForm.conMainForm

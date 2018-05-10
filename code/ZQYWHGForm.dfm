@@ -256,6 +256,7 @@ object ZQYWHGForm1: TZQYWHGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 6
+    OnEnter = EditInitContent
   end
   object edtHGCJJE: TEdit
     Left = 336
@@ -272,6 +273,7 @@ object ZQYWHGForm1: TZQYWHGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 7
+    OnEnter = EditInitContent
   end
   object edtHGFKJE: TEdit
     Left = 114
@@ -288,6 +290,7 @@ object ZQYWHGForm1: TZQYWHGForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 8
+    OnEnter = EditInitContent
   end
   object btnHGSure: TButton
     Left = 282
@@ -318,6 +321,25 @@ object ZQYWHGForm1: TZQYWHGForm1
     ParentFont = False
     TabOrder = 10
     OnClick = btnHGCancleClick
+  end
+  object cbbZQDXZQDM: TComboBox
+    Left = 111
+    Top = 23
+    Width = 143
+    Height = 21
+    AutoComplete = False
+    AutoDropDown = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 11
+    OnChange = SelectZQXX
+    OnSelect = AutoZQXX
   end
   object qryGPJY: TADOQuery
     Connection = MainForm.conMainForm

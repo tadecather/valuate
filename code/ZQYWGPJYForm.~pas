@@ -39,10 +39,14 @@ type
     lblGPJYCJJE: TLabel;
     edtGPJYCJJG: TEdit;
     edtGPJYCJJE: TEdit;
+    cbbGPJYZQDM: TComboBox;
     procedure btnGPJYSureClick(Sender: TObject);
     procedure btnGPJYCancleClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure SelectZQXX(Sender: TObject);
+    procedure AutoZQXX(Sender: TObject);
+    procedure EditInitContent(Sender:TObject);
   private
     { Private declarations }
   public
@@ -124,7 +128,7 @@ begin
       ShowMessage('请确保所有数据不为空！');
       Exit;
     end;
-      SQL.Add('insert into TZQJY Values(:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l,:m,:n,:o,:p)');
+      SQL.Add('insert into TZQJY Values(:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l,:m,:n,:o,:p,:q)');
       Parameters.ParamByName('a').Value:=ZQYWGPJYForm1.edtGPJYZQDM.Text;
       Parameters.ParamByName('b').Value:=ZQYWGPJYForm1.edtGPJYZQMC.Text;
       Parameters.ParamByName('c').Value:=FormatDatetime('YYYY/MM/DD', dtpGPJYJYRQ.DateTime);
@@ -142,6 +146,7 @@ begin
       // 计算税后利息，插入到数据库中去 ，引入 Math 模块，保留两位小数
       Parameters.ParamByName('o').Value:=RoundTo(StrToFloat(edtGPJYSXF.Text) * (1 - StrToFloat(edtGPJYYJ.Text)),2);
       Parameters.ParamByName('p').Value:=StrToFloat(edtGPJYYJ.Text);
+      Parameters.ParamByName('q').Value:=FormatDatetime('YYYY/MM/DD', MainForm.dtpMainForm.DateTime);
     end
     else if ( ZQYWGPJYForm1.Caption='股票交易-新增') then
     begin
@@ -159,6 +164,7 @@ begin
       Parameters.ParamByName('k').Value:=StrToFloat(edtGPJYGHF.Text);
       Parameters.ParamByName('l').Value:=StrToFloat(edtGPJYZGF.Text);
       Parameters.ParamByName('m').Value:=StrToFloat(edtGPJYYJ.Text);
+
     end;
     ExecSQL;
     end;
@@ -216,6 +222,9 @@ begin
     edtGPJYZGF.Enabled := False;
     edtGPJYSXF.Enabled := False;
     edtGPJYYJ.Enabled := False;
+    
+    cbbGPJYZQDM.Visible := False;
+    edtGPJYZQDM.Visible := True;
   end
   else if (Caption = '股票交易-修改') or (Caption = '债券交易-修改') then
   begin
@@ -233,14 +242,17 @@ begin
     edtGPJYZGF.Enabled := True;
     edtGPJYSXF.Enabled := True;
     edtGPJYYJ.Enabled := True;
+
+    cbbGPJYZQDM.Visible := False;
+    edtGPJYZQDM.Visible := True;
   end
   else
   begin
     edtGPJYZQDM.Enabled := True;
     dtpGPJYJYRQ.Enabled := True;
-    edtGPJYZQMC.Enabled := True;
+    edtGPJYZQMC.Enabled := False;
     cbbGPJYJYFX.Enabled := True;
-    cbbGPJYJYSC.Enabled := True;
+    cbbGPJYJYSC.Enabled := False;
     edtZQYWCJSL.Enabled := True;
     edtGPJYCJJG.Enabled := True;
     edtGPJYCJJE.Enabled := True;
@@ -250,8 +262,70 @@ begin
     edtGPJYZGF.Enabled := True;
     edtGPJYSXF.Enabled := True;
     edtGPJYYJ.Enabled := True;
+
+    cbbGPJYZQDM.Visible := True;
+    edtGPJYZQDM.Visible := False;
   end;
 
+end;
+
+// 填写证券代码时，显示所有符合要求证券代码
+procedure TZQYWGPJYForm1.SelectZQXX(Sender: TObject);
+Var ZQDM :string;
+begin
+  ZQDM := TComboBox(Sender).Text;
+  TComboBox(Sender).Items.Clear;
+//  showMessage(ZQDM);
+  if ZQDM = '' then exit;
+  with qryGPJY do
+  begin
+    Close;
+    SQL.Clear;
+    if Caption = '股票交易-新增' then
+    begin
+      SQL.Add('select TZQXX_ZQDM,TZQXX_ZQMC,TZQXX_JYSC from tzqxx where '+
+      'tzqxx_zqlb=''股票'' and tzqxx_zqdm like :a');
+    end
+    else
+    begin
+      SQL.Add('select TZQXX_ZQDM,TZQXX_ZQMC,TZQXX_JYSC from tzqxx where '+
+      'tzqxx_zqlb=''债券'' and tzqxx_zqdm like :a');
+    end;
+    Parameters.ParamByName('a').Value:=ZQDM + '%';
+    Open;
+    while not eof do
+    begin
+        TComboBox(Sender).Items.Add(Fields[0].Text + '-' +
+                Fields[1].Text + '-' + Fields[2].Text);
+        // 使用 next 使游标指向下一列
+        next;
+    end;
+  end;
+  TComboBox(Sender).DroppedDown := True;
+  SendMessage(TComboBox(Sender).Handle, WM_SETCURSOR, 0, 0);
+  TComboBox(Sender).Text := ZQDM;
+  TComboBox(Sender).SelStart := Length(ZQDM);
+end;
+
+// 选中一条证券代码以后，自动填充页面里面的信息
+procedure TZQYWGPJYForm1.AutoZQXX(Sender: TObject);
+Var
+    txtLines : TStringList;
+begin
+  txtLines := TStringList.Create;
+  txtLines.Delimiter := '-';
+
+  txtLines.DelimitedText := TComboBox(Sender).Text;
+  edtGPJYZQDM.Text := txtLines[0];
+//  cbbGPJYZQDM.Text := txtLines[0];
+  edtGPJYZQMC.Text := txtLines[1];
+  cbbGPJYJYSC.Text := txtLines[2];
+end;
+
+// 在点击进入输入控件时，替换控件内容为''
+procedure TZQYWGPJYForm1.EditInitContent(Sender:TObject);
+begin
+  TEdit(Sender).Text := '';
 end;
 
 end.

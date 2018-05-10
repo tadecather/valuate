@@ -21,9 +21,14 @@ type
     btnDXSure: TButton;
     btnDXCancle: TButton;
     qryDXYW: TADOQuery;
+    cbbZQDXZQDM: TComboBox;
     procedure btnDXCancleClick(Sender: TObject);
     procedure btnDXSureClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+
+    procedure EditInitContent(Sender:TObject);
+    procedure SelectZQXX(Sender: TObject);
+    procedure AutoZQXX(Sender: TObject);
   private
     { Private declarations }
   public
@@ -153,13 +158,15 @@ begin
         ShowMessage('请确保所有数据不为空！');
         Exit;
       end;
-      SQL.Add('insert into TZQJY(TZQJY_ZQDM,TZQJY_ZQMC,TZQJY_JYRQ,TZQJY_JYFX,TZQJY_JYSC,TZQJY_SQLX)'+
-               ' Values(:c,:e,:a,''兑息转出'',:d,:b)');
+      SQL.Add('insert into TZQJY(TZQJY_ZQDM,TZQJY_ZQMC,TZQJY_JYRQ,TZQJY_JYFX,'+
+              'TZQJY_JYSC,TZQJY_SQLX,TZQJY_YWRQ,TZQJY_CJJG,TZQJY_CJJE,TZQJY_CJSL)'+
+               ' Values(:c,:e,:a,''兑息转出'',:d,:b,:f,0,0,0)');
       Parameters.ParamByName('a').Value:=FormatDatetime('YYYY/MM/DD', dtpDXJYRQ.DateTime);
       Parameters.ParamByName('b').Value:=StrToFloat(edtDXZCLX.Text);
       Parameters.ParamByName('c').Value:=edtDXZQDM.Text;
       Parameters.ParamByName('d').Value:=cbbDXJYSC.Text;
       Parameters.ParamByName('e').Value:=edtDXZQMC.Text;
+      Parameters.ParamByName('f').Value:=FormatDatetime('YYYY/MM/DD', MainForm.dtpMainForm.DateTime);
     end
     else if(Caption='兑息业务-到账-新增') then
     begin
@@ -168,13 +175,15 @@ begin
         ShowMessage('请确保所有数据不为空！');
         Exit;
       end;
-      SQL.Add('insert into TZQJY(TZQJY_ZQDM,TZQJY_ZQMC,TZQJY_JYRQ,TZQJY_JYFX,TZQJY_JYSC,TZQJY_SQLX)'+
-               ' Values(:c,:e,:a,:f''兑息到账'',:d,:b)');
+      SQL.Add('insert into TZQJY(TZQJY_ZQDM,TZQJY_ZQMC,TZQJY_JYRQ,TZQJY_JYFX,'+
+              'TZQJY_JYSC,TZQJY_SQLX,TZQJY_YWRQ,TZQJY_CJJG,TZQJY_CJJE,TZQJY_CJSL)'+
+               ' Values(:c,:e,:a,''兑息到账'',:d,:b,:f,0,0,0)');
       Parameters.ParamByName('a').Value:=FormatDatetime('YYYY/MM/DD', dtpDXJYRQ.DateTime);
       Parameters.ParamByName('b').Value:=StrToFloat(edtDXZCLX.Text);
       Parameters.ParamByName('c').Value:=edtDXZQDM.Text;
       Parameters.ParamByName('d').Value:=cbbDXJYSC.Text;
       Parameters.ParamByName('e').Value:=edtDXZQMC.Text;
+      Parameters.ParamByName('f').Value:=FormatDatetime('YYYY/MM/DD', MainForm.dtpMainForm.DateTime);
     end;
   ExecSQL;
   end;
@@ -187,6 +196,67 @@ begin
   edtDXZCLX.OnKeyPress := MainForm.EditNumberKeyPress;
 
   edtDXZCLX.OnExit := MainForm.EditBumberLeave;
+end;
+
+
+
+// 填写证券代码时，显示所有符合要求证券代码
+procedure TZQYWDXForm1.SelectZQXX(Sender: TObject);
+Var ZQDM :string;
+begin
+  ZQDM := TComboBox(Sender).Text;
+  TComboBox(Sender).Items.Clear;
+//  showMessage(ZQDM);
+  if ZQDM = '' then exit;
+  with qryDXYW do
+  begin
+    Close;
+    SQL.Clear;
+    if (Caption = '兑息业务-到账-新增')  or (Caption = '兑息业务-转出-新增') then
+    begin
+      SQL.Add('select TZQXX_ZQDM,TZQXX_ZQMC,TZQXX_JYSC from tzqxx where '+
+      'tzqxx_zqlb=''债券'' and tzqxx_zqdm like :a');
+    end
+    else
+    begin
+      SQL.Add('select TZQXX_ZQDM,TZQXX_ZQMC,TZQXX_JYSC from tzqxx where '+
+      'tzqxx_zqlb=''股票'' and tzqxx_zqdm like :a');
+    end;
+    Parameters.ParamByName('a').Value:=ZQDM + '%';
+    Open;
+    while not eof do
+    begin
+        TComboBox(Sender).Items.Add(Fields[0].Text + '-' +
+                Fields[1].Text + '-' + Fields[2].Text);
+        // 使用 next 使游标指向下一列
+        next;
+    end;
+  end;
+  TComboBox(Sender).DroppedDown := True;
+  SendMessage(TComboBox(Sender).Handle, WM_SETCURSOR, 0, 0);
+  TComboBox(Sender).Text := ZQDM;
+  TComboBox(Sender).SelStart := Length(ZQDM);
+end;
+
+// 选中一条证券代码以后，自动填充页面里面的信息
+procedure TZQYWDXForm1.AutoZQXX(Sender: TObject);
+Var
+    txtLines : TStringList;
+begin
+  txtLines := TStringList.Create;
+  txtLines.Delimiter := '-';
+
+  txtLines.DelimitedText := TComboBox(Sender).Text;
+  edtDXZQDM.Text := txtLines[0];
+//  cbbGPJYZQDM.Text := txtLines[0];
+  edtDXZQMC.Text := txtLines[1];
+  cbbDXJYSC.Text := txtLines[2];
+end;
+
+// 在点击进入输入控件时，替换控件内容为''
+procedure TZQYWDXForm1.EditInitContent(Sender:TObject);
+begin
+  TEdit(Sender).Text := '';
 end;
 
 end.

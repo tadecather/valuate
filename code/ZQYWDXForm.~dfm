@@ -1,6 +1,6 @@
 object ZQYWDXForm1: TZQYWDXForm1
-  Left = 434
-  Top = 231
+  Left = 922
+  Top = 286
   Width = 497
   Height = 201
   Caption = #20817#24687#19994#21153'-'
@@ -15,7 +15,7 @@ object ZQYWDXForm1: TZQYWDXForm1
   PixelsPerInch = 96
   TextHeight = 13
   object lblDXZQDM: TLabel
-    Left = 39
+    Left = 36
     Top = 23
     Width = 64
     Height = 16
@@ -57,7 +57,7 @@ object ZQYWDXForm1: TZQYWDXForm1
     ParentFont = False
   end
   object lblDXZQMC: TLabel
-    Left = 39
+    Left = 36
     Top = 65
     Width = 64
     Height = 16
@@ -71,7 +71,7 @@ object ZQYWDXForm1: TZQYWDXForm1
     ParentFont = False
   end
   object lblDXZCLX: TLabel
-    Left = 39
+    Left = 36
     Top = 108
     Width = 64
     Height = 16
@@ -85,7 +85,7 @@ object ZQYWDXForm1: TZQYWDXForm1
     ParentFont = False
   end
   object edtDXZQDM: TEdit
-    Left = 119
+    Left = 116
     Top = 22
     Width = 81
     Height = 24
@@ -116,7 +116,7 @@ object ZQYWDXForm1: TZQYWDXForm1
     TabOrder = 1
   end
   object edtDXZQMC: TEdit
-    Left = 119
+    Left = 116
     Top = 66
     Width = 81
     Height = 24
@@ -150,7 +150,7 @@ object ZQYWDXForm1: TZQYWDXForm1
       #28145#22323)
   end
   object edtDXZCLX: TEdit
-    Left = 119
+    Left = 116
     Top = 105
     Width = 81
     Height = 24
@@ -164,6 +164,7 @@ object ZQYWDXForm1: TZQYWDXForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 4
+    OnEnter = EditInitContent
   end
   object btnDXSure: TButton
     Left = 276
@@ -194,6 +195,25 @@ object ZQYWDXForm1: TZQYWDXForm1
     ParentFont = False
     TabOrder = 6
     OnClick = btnDXCancleClick
+  end
+  object cbbZQDXZQDM: TComboBox
+    Left = 111
+    Top = 23
+    Width = 143
+    Height = 21
+    AutoComplete = False
+    AutoDropDown = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 7
+    OnChange = SelectZQXX
+    OnSelect = AutoZQXX
   end
   object qryDXYW: TADOQuery
     Connection = MainForm.conMainForm

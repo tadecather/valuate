@@ -303,6 +303,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 5
+    OnEnter = EditInitContent
   end
   object cbbGPJYJYFX: TComboBox
     Left = 330
@@ -357,6 +358,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 8
+    OnEnter = EditInitContent
   end
   object edtGPJYYHS: TEdit
     Left = 114
@@ -373,6 +375,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 9
+    OnEnter = EditInitContent
   end
   object edtGPJYZGF: TEdit
     Left = 330
@@ -389,6 +392,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 10
+    OnEnter = EditInitContent
   end
   object edtGPJYGHF: TEdit
     Left = 114
@@ -405,6 +409,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 11
+    OnEnter = EditInitContent
   end
   object edtGPJYYJ: TEdit
     Left = 330
@@ -421,6 +426,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 12
+    OnEnter = EditInitContent
   end
   object edtGPJYSXF: TEdit
     Left = 114
@@ -437,6 +443,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 13
+    OnEnter = EditInitContent
   end
   object edtGPJYCJJG: TEdit
     Left = 111
@@ -453,6 +460,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 14
+    OnEnter = EditInitContent
   end
   object edtGPJYCJJE: TEdit
     Left = 329
@@ -469,6 +477,26 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 15
+    OnEnter = EditInitContent
+  end
+  object cbbGPJYZQDM: TComboBox
+    Left = 114
+    Top = 23
+    Width = 143
+    Height = 21
+    AutoComplete = False
+    AutoDropDown = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 16
+    OnChange = SelectZQXX
+    OnSelect = AutoZQXX
   end
   object qryGPJY: TADOQuery
     Connection = MainForm.conMainForm

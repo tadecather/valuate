@@ -29,10 +29,15 @@ type
     btnHGSure: TButton;
     btnHGCancle: TButton;
     qryGPJY: TADOQuery;
+    cbbZQDXZQDM: TComboBox;
     procedure btnHGSureClick(Sender: TObject);
     procedure btnHGCancleClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+
+    procedure EditInitContent(Sender:TObject);
+    procedure SelectZQXX(Sender: TObject);
+    procedure AutoZQXX(Sender: TObject);
   private
     { Private declarations }
   public
@@ -123,14 +128,18 @@ begin
   if (Caption = '回购业务-新增') then
   begin
     edtHGZQDM.Enabled := True;
-    edtHGZQMC.Enabled := True;
+    edtHGZQMC.Enabled := False;
     dtpHGJYRQ.Enabled := True;
     dtpHGDQRQ.Enabled := True;
     cbbHGJYFX.Enabled := True;
     edtHGHGTS.Enabled := True;
-    cbbHGJYSC.Enabled := True;
+    cbbHGJYSC.Enabled := False;
     edtHGCJJE.Enabled := True;
     edtHGFKJE.Enabled := True;
+
+    cbbZQDXZQDM.Visible := True;
+    edtHGZQDM.Visible := False;
+    cbbZQDXZQDM.Text  := '';
   end
   else if(Caption = '回购业务-查看') then
   begin
@@ -143,6 +152,9 @@ begin
     cbbHGJYSC.Enabled := False;
     edtHGCJJE.Enabled := False;
     edtHGFKJE.Enabled := False;
+
+    cbbZQDXZQDM.Visible := False;
+    edtHGZQDM.Visible := True;
   end
   else
   begin
@@ -155,7 +167,61 @@ begin
     cbbHGJYSC.Enabled := True;
     edtHGCJJE.Enabled := True;
     edtHGFKJE.Enabled := True;
+
+    cbbZQDXZQDM.Visible := False;
+    edtHGZQDM.Visible := True;
   end;
+end;
+
+// 填写证券代码时，显示所有符合要求证券代码
+procedure TZQYWHGForm1.SelectZQXX(Sender: TObject);
+Var ZQDM :string;
+begin
+  ZQDM := TComboBox(Sender).Text;
+  TComboBox(Sender).Items.Clear;
+//  showMessage(ZQDM);
+  if ZQDM = '' then exit;
+  with qryGPJY do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add('select TZQXX_ZQDM,TZQXX_ZQMC,TZQXX_JYSC from tzqxx where '+
+    'tzqxx_zqlb=''回购'' and tzqxx_zqdm like :a');
+    Parameters.ParamByName('a').Value:=ZQDM + '%';
+    Open;
+    while not eof do
+    begin
+        TComboBox(Sender).Items.Add(Fields[0].Text + '-' +
+                Fields[1].Text + '-' + Fields[2].Text);
+        // 使用 next 使游标指向下一列
+        next;
+    end;
+  end;
+  TComboBox(Sender).DroppedDown := True;
+  SendMessage(TComboBox(Sender).Handle, WM_SETCURSOR, 0, 0);
+  TComboBox(Sender).Text := ZQDM;
+  TComboBox(Sender).SelStart := Length(ZQDM);
+end;
+
+// 选中一条证券代码以后，自动填充页面里面的信息
+procedure TZQYWHGForm1.AutoZQXX(Sender: TObject);
+Var
+    txtLines : TStringList;
+begin
+  txtLines := TStringList.Create;
+  txtLines.Delimiter := '-';
+
+  txtLines.DelimitedText := TComboBox(Sender).Text;
+  edtHGZQDM.Text := txtLines[0];
+//  cbbGPJYZQDM.Text := txtLines[0];
+  edtHGZQMC.Text := txtLines[1];
+  cbbHGJYSC.Text := txtLines[2];
+end;
+
+// 在点击进入输入控件时，替换控件内容为''
+procedure TZQYWHGForm1.EditInitContent(Sender:TObject);
+begin
+  TEdit(Sender).Text := '';
 end;
 
 end.

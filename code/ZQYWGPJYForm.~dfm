@@ -1,10 +1,10 @@
 object ZQYWGPJYForm1: TZQYWGPJYForm1
-  Left = 581
-  Top = 192
+  Left = 495
+  Top = 204
   Width = 492
-  Height = 564
+  Height = 389
   Caption = #32929#31080#20132#26131'-'
-  Color = clBtnFace
+  Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -45,7 +45,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYJYFX: TLabel
     Left = 255
-    Top = 83
+    Top = 67
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -59,7 +59,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYZQMC: TLabel
     Left = 39
-    Top = 78
+    Top = 62
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -73,7 +73,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYCJSL: TLabel
     Left = 255
-    Top = 139
+    Top = 102
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -87,7 +87,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYYHS: TLabel
     Left = 55
-    Top = 268
+    Top = 187
     Width = 48
     Height = 16
     Alignment = taRightJustify
@@ -101,7 +101,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYJSF: TLabel
     Left = 271
-    Top = 266
+    Top = 185
     Width = 48
     Height = 16
     Alignment = taRightJustify
@@ -115,7 +115,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYSXF: TLabel
     Left = 55
-    Top = 396
+    Top = 265
     Width = 48
     Height = 16
     Alignment = taRightJustify
@@ -129,7 +129,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYZGF: TLabel
     Left = 271
-    Top = 333
+    Top = 223
     Width = 48
     Height = 16
     Alignment = taRightJustify
@@ -143,7 +143,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYGHF: TLabel
     Left = 55
-    Top = 335
+    Top = 225
     Width = 48
     Height = 16
     Alignment = taRightJustify
@@ -157,7 +157,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYYJ: TLabel
     Left = 287
-    Top = 396
+    Top = 265
     Width = 32
     Height = 16
     Alignment = taRightJustify
@@ -171,7 +171,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYJYSC: TLabel
     Left = 39
-    Top = 139
+    Top = 102
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -185,7 +185,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYCJJG: TLabel
     Left = 39
-    Top = 204
+    Top = 146
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -199,7 +199,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object lblGPJYCJJE: TLabel
     Left = 255
-    Top = 202
+    Top = 144
     Width = 64
     Height = 16
     Alignment = taRightJustify
@@ -212,7 +212,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     ParentFont = False
   end
   object edtGPJYZQDM: TEdit
-    Left = 119
+    Left = 114
     Top = 22
     Width = 81
     Height = 24
@@ -222,12 +222,13 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 0
   end
   object dtpGPJYJYRQ: TDateTimePicker
-    Left = 340
+    Left = 330
     Top = 23
     Width = 90
     Height = 25
@@ -236,13 +237,14 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Time = 43186.4417155324
     DateFormat = dfShort
     DateMode = dmComboBox
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     Kind = dtkDate
     ParseInput = False
     TabOrder = 1
   end
   object edtGPJYZQMC: TEdit
-    Left = 119
-    Top = 79
+    Left = 114
+    Top = 63
     Width = 81
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -251,13 +253,14 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 2
   end
   object btnGPJYSure: TButton
     Left = 282
-    Top = 454
+    Top = 304
     Width = 73
     Height = 25
     Caption = #30830#23450
@@ -272,7 +275,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
   end
   object btnGPJYCancle: TButton
     Left = 354
-    Top = 454
+    Top = 304
     Width = 73
     Height = 25
     Caption = #21462#28040
@@ -286,8 +289,8 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     OnClick = btnGPJYCancleClick
   end
   object edtZQYWCJSL: TEdit
-    Left = 340
-    Top = 138
+    Left = 330
+    Top = 101
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -296,13 +299,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 5
+    OnEnter = EditInitContent
   end
   object cbbGPJYJYFX: TComboBox
-    Left = 340
-    Top = 79
+    Left = 330
+    Top = 63
     Width = 83
     Height = 21
     Font.Charset = ANSI_CHARSET
@@ -310,6 +315,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = #40657#20307
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ItemHeight = 13
     ParentFont = False
     TabOrder = 6
@@ -319,8 +325,8 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
       #21334#20986)
   end
   object cbbGPJYJYSC: TComboBox
-    Left = 119
-    Top = 138
+    Left = 114
+    Top = 101
     Width = 83
     Height = 21
     Font.Charset = ANSI_CHARSET
@@ -328,6 +334,7 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = #40657#20307
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ItemHeight = 13
     ParentFont = False
     TabOrder = 7
@@ -337,8 +344,8 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
       #28145#22323)
   end
   object edtGPJYJSF: TEdit
-    Left = 340
-    Top = 265
+    Left = 330
+    Top = 184
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -347,13 +354,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 8
+    OnEnter = EditInitContent
   end
   object edtGPJYYHS: TEdit
-    Left = 119
-    Top = 265
+    Left = 114
+    Top = 184
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -362,13 +371,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 9
+    OnEnter = EditInitContent
   end
   object edtGPJYZGF: TEdit
-    Left = 340
-    Top = 332
+    Left = 330
+    Top = 222
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -377,13 +388,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 10
+    OnEnter = EditInitContent
   end
   object edtGPJYGHF: TEdit
-    Left = 119
-    Top = 332
+    Left = 114
+    Top = 222
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -392,13 +405,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 11
+    OnEnter = EditInitContent
   end
   object edtGPJYYJ: TEdit
-    Left = 340
-    Top = 395
+    Left = 330
+    Top = 264
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -407,13 +422,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 12
+    OnEnter = EditInitContent
   end
   object edtGPJYSXF: TEdit
-    Left = 119
-    Top = 393
+    Left = 114
+    Top = 262
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -422,13 +439,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 13
+    OnEnter = EditInitContent
   end
   object edtGPJYCJJG: TEdit
-    Left = 116
-    Top = 201
+    Left = 111
+    Top = 143
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -437,13 +456,15 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 14
+    OnEnter = EditInitContent
   end
   object edtGPJYCJJE: TEdit
-    Left = 335
-    Top = 201
+    Left = 329
+    Top = 143
     Width = 83
     Height = 24
     BiDiMode = bdRightToLeftNoAlign
@@ -452,14 +473,35 @@ object ZQYWGPJYForm1: TZQYWGPJYForm1
     Font.Height = -13
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
     ParentBiDiMode = False
     ParentFont = False
     TabOrder = 15
+    OnEnter = EditInitContent
+  end
+  object cbbGPJYZQDM: TComboBox
+    Left = 114
+    Top = 23
+    Width = 143
+    Height = 21
+    AutoComplete = False
+    AutoDropDown = True
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = #40657#20307
+    Font.Style = []
+    ImeName = #20013#25991'('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 13
+    ParentFont = False
+    TabOrder = 16
+    OnChange = SelectZQXX
+    OnSelect = AutoZQXX
   end
   object qryGPJY: TADOQuery
     Connection = MainForm.conMainForm
     Parameters = <>
     Left = 253
-    Top = 452
+    Top = 302
   end
 end

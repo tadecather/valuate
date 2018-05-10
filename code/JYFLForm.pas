@@ -54,18 +54,38 @@ procedure TJYFLForm1.JYFLSureButtonClick(Sender: TObject);
 begin
   // 由于 数据库的设置 YWLB 和 JYSC 为主键，并且其他的不可为空，所以 从数据库里
   //面查出来的数据也不可能为空 ,所以不用进行数据为空的检查
+  if (YHEdit.Text = '') or (JSEdit.Text = '') or (GHEdit.Text = '') or (ZGEdit.Text = '')
+     or (YJEdit.Text = '') or (JYLXEdit.Text = '') or (JYSCEdit.Text = '') then
+  begin
+    showMessage('请确保所有数据不为空');
+    exit;
+  end;
   with JYFLADOOperation do
   begin
     Close;
     SQL.Clear;
-    SQL.Add('update TJYFL set TJYFL_YHS=:a,TJYFL_JSF=:b,TJYFL_GHF=:c,TJYFL_ZGF=:d,TJYFL_YJ=:e where TJYFL_YWLB=:f and TJYFL_JYSC=:g');
-    Parameters.ParamByName('a').Value:=StrToFloat(YHEdit.Text);
-    Parameters.ParamByName('b').Value:=StrToFloat(JSEdit.Text);
-    Parameters.ParamByName('c').Value:=StrToFloat(GHEdit.Text);
-    Parameters.ParamByName('d').Value:=StrToFloat(ZGEdit.Text);
-    Parameters.ParamByName('e').Value:=StrToFloat(YJEdit.Text);
-    Parameters.ParamByName('f').Value:=JYLXEdit.Text;
-    Parameters.ParamByName('g').Value:=JYSCEdit.Text;
+    if Caption = '交易费率-新增' then
+    begin
+      SQL.Add('insert into tjyfl values(:g,:f,:a,:b,:c,:d,:e)');
+      Parameters.ParamByName('a').Value:=StrToFloat(YHEdit.Text);
+      Parameters.ParamByName('b').Value:=StrToFloat(JSEdit.Text);
+      Parameters.ParamByName('c').Value:=StrToFloat(GHEdit.Text);
+      Parameters.ParamByName('d').Value:=StrToFloat(ZGEdit.Text);
+      Parameters.ParamByName('e').Value:=StrToFloat(YJEdit.Text);
+      Parameters.ParamByName('f').Value:=JYLXEdit.Text;
+      Parameters.ParamByName('g').Value:=JYSCEdit.Text;
+    end
+    else
+    begin
+      SQL.Add('update TJYFL set TJYFL_YHS=:a,TJYFL_JSF=:b,TJYFL_GHF=:c,TJYFL_ZGF=:d,TJYFL_YJ=:e where TJYFL_YWLB=:f and TJYFL_JYSC=:g');
+      Parameters.ParamByName('a').Value:=StrToFloat(YHEdit.Text);
+      Parameters.ParamByName('b').Value:=StrToFloat(JSEdit.Text);
+      Parameters.ParamByName('c').Value:=StrToFloat(GHEdit.Text);
+      Parameters.ParamByName('d').Value:=StrToFloat(ZGEdit.Text);
+      Parameters.ParamByName('e').Value:=StrToFloat(YJEdit.Text);
+      Parameters.ParamByName('f').Value:=JYLXEdit.Text;
+      Parameters.ParamByName('g').Value:=JYSCEdit.Text;
+    end;
     ExecSQL;
   end;
   Close;
@@ -90,10 +110,8 @@ begin
   ZGEdit.OnExit := MainForm.EditBumberLeave;
   YJEdit.OnExit := MainForm.EditBumberLeave;
 
-
-  JYSCEdit.Enabled := False;
   JYLXEdit.Enabled := False;
-
+  JYSCEdit.Enabled := False;
 end;
 
 end.
